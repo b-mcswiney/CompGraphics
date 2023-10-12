@@ -157,26 +157,8 @@ int main() try
 		surface.set_pixel_srgb( 10, 1, { 255, 0, 0 } );
 		//TODO: drawing code goes here
 
-		// draw_rectangle_solid(
-		// 	surface,
-		// 	{ 500.f, 300.f },
-		// 	{ 650.f, 450.f },
-		// 	{ 255, 0, 0 } // red
-		// 	);
-		// draw_rectangle_outline(
-		// 	surface,
-		// 	{  50.f, 300.f },
-		// 	{ 200.f, 450.f },
-		// 	{ 0, 255, 0 } // green
-		// 	);
 
-		// draw_rectangle_outline(
-		// 	surface,
-		// 	{  50.f, 300.f },
-		// 	{ 200.f, 450.f },
-		// 	{ 0, 255, 0 } // green
-		// 	);
-
+		// If mouse is being pressed draw outline
 		if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
 		{
 			draw_rectangle_outline(
@@ -187,7 +169,7 @@ int main() try
 				);
 		}
 
-
+		// If there are saved squares draw them
 		for(int i = 0; i < squaresList.size(); i++)
 		{
 			draw_rectangle_solid(
@@ -237,7 +219,7 @@ namespace
 
 	void glfw_cb_motion_( GLFWwindow* aWindow, double mousePosX, double mousePosY)
 	{
-		//std::cout << "Mouse position: " << mousePosX << ", " << mousePosY << std::endl;
+		// Convert mouse position to screen coordinates
 		currentMouseX = mousePosX;
 		currentMouseY = 720 - mousePosY;
 	}
@@ -246,19 +228,19 @@ namespace
 	{
 		if (glfwGetMouseButton(aWindow, GLFW_MOUSE_BUTTON_LEFT) == GLFW_RELEASE)
 		{
-			std::cout << "initial values" << initialMouseX << ", " << initialMouseY << std::endl;
-			std::cout << "current values" << currentMouseX << ", " << currentMouseY << std::endl;
-
+			// Mouse released so add square to list
 			Squares square = {initialMouseX, initialMouseY, currentMouseX, currentMouseY};
 
 			squaresList.push_back(square);
 
+			// Reset initial mouse position so outline stops
 			initialMouseX = 0;
 			initialMouseY = 0;
 
 			return;
 		}
 
+		// Mouse is being held so update initial mouse position
 		initialMouseX = currentMouseX;
 		initialMouseY = currentMouseY;
 	}

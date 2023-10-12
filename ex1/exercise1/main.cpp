@@ -19,10 +19,21 @@
 #define 	GLFW_MOUSE_BUTTON_1   0
 #define 	GLFW_MOUSE_BUTTON_LEFT  GLFW_MOUSE_BUTTON_1   
 
-int mouseX;
-int mouseY;
+float currentMouseX;
+float currentMouseY;
 
-std::vector<float> mousePos;
+float initialMouseX;
+float initialMouseY;
+
+struct Squares
+{
+	float minX;
+	float minY;
+	float maxX;
+	float maxY;
+};
+
+std::vector<Squares> squaresList;
 
 
 namespace
@@ -159,25 +170,30 @@ int main() try
 		// 	{ 0, 255, 0 } // green
 		// 	);
 
-		draw_rectangle_outline(
-			surface,
-			{  50.f, 300.f },
-			{ 200.f, 450.f },
-			{ 0, 255, 0 } // green
-			);
+		// draw_rectangle_outline(
+		// 	surface,
+		// 	{  50.f, 300.f },
+		// 	{ 200.f, 450.f },
+		// 	{ 0, 255, 0 } // green
+		// 	);
 
-		if(mousePos.size() > 3)
-		{	
-			std::cout << "MousePos 0 and 1: " << mousePos[0] << ", " << mousePos[1] << std::endl;
-			std::cout << "MousePos 2 and 3: " << mousePos[2] << ", " << mousePos[3] << std::endl;
-			// mousePos[0] = 50.f;
-			// mousePos[1] = 300.f;
-			// mousePos[2] = 200.f;
-			// mousePos[3] = 450.f;
+		if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
+		{
+			draw_rectangle_outline(
+				surface,
+				{ initialMouseX, initialMouseY },
+				{ currentMouseX, currentMouseY },
+				{ 0, 255, 0 } // green
+				);
+		}
+
+
+		for(int i = 0; i < squaresList.size(); i++)
+		{
 			draw_rectangle_solid(
 				surface,
-				{ mousePos[0], mousePos[3]},
-				{ mousePos[2], mousePos[1]},
+				{ squaresList[i].minX, squaresList[i].minY},
+				{ squaresList[i].maxX, squaresList[i].maxY},
 				{ 0, 0, 255 } // blue
 				);
 		}
@@ -222,21 +238,29 @@ namespace
 	void glfw_cb_motion_( GLFWwindow* aWindow, double mousePosX, double mousePosY)
 	{
 		//std::cout << "Mouse position: " << mousePosX << ", " << mousePosY << std::endl;
-		mouseX = mousePosX;
-		mouseY = mousePosY;
+		currentMouseX = mousePosX;
+		currentMouseY = 720 - mousePosY;
 	}
 
 	void glfw_cb_button_( GLFWwindow* aWindow, int aButton, int aAction, int aMod )
 	{
 		if (glfwGetMouseButton(aWindow, GLFW_MOUSE_BUTTON_LEFT) == GLFW_RELEASE)
 		{
-			std::cout << "Mouse position: " << mouseX << ", " << mouseY << std::endl;
+			std::cout << "initial values" << initialMouseX << ", " << initialMouseY << std::endl;
+			std::cout << "current values" << currentMouseX << ", " << currentMouseY << std::endl;
 
-			mousePos.push_back(mouseX);
-			mousePos.push_back(mouseY);
+			Squares square = {initialMouseX, initialMouseY, currentMouseX, currentMouseY};
+
+			squaresList.push_back(square);
+
+			initialMouseX = 0;
+			initialMouseY = 0;
 
 			return;
 		}
+
+		initialMouseX = currentMouseX;
+		initialMouseY = currentMouseY;
 	}
 }
 

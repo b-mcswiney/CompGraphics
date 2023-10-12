@@ -10,8 +10,17 @@
 
 void draw_rectangle_solid( Surface& aSurface, Vec2f aMinCorner, Vec2f aMaxCorner, ColorU8_sRGB aColor )
 {	
-	std::cout << "MinCorner: " << aMinCorner.x << ", " << aMinCorner.y << std::endl;
-	std::cout << "MaxCorner: " << aMaxCorner.x << ", " << aMaxCorner.y << std::endl;
+
+	// If the max is less than the min swap them
+	if (aMaxCorner.x < aMinCorner.x)
+	{
+		std::swap(aMaxCorner.x, aMinCorner.x);
+	}
+	if (aMaxCorner.y < aMinCorner.y)
+	{
+		std::swap(aMaxCorner.y, aMinCorner.y);
+	}
+
 	for (int y = aMinCorner.y; y < aMaxCorner.y; y++)
 	{
 		for (int x = aMinCorner.x; x < aMaxCorner.x; x++)
@@ -26,6 +35,17 @@ void draw_rectangle_outline( Surface& aSurface, Vec2f aMinCorner, Vec2f aMaxCorn
 	//TODO: your implementation goes here
 	//TODO: your implementation goes here
 	//TODO: your implementation goes here
+
+	// If the max is less than the min swap them
+	if (aMaxCorner.x < aMinCorner.x)
+	{
+		std::swap(aMaxCorner.x, aMinCorner.x);
+	}
+	if (aMaxCorner.y < aMinCorner.y)
+	{
+		std::swap(aMaxCorner.y, aMinCorner.y);
+	}
+
 
 	for (int y = aMinCorner.y; y <= aMaxCorner.y; y++)
 	{

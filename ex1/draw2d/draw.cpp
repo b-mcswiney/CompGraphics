@@ -21,6 +21,7 @@ void draw_rectangle_solid( Surface& aSurface, Vec2f aMinCorner, Vec2f aMaxCorner
 		std::swap(aMaxCorner.y, aMinCorner.y);
 	}
 
+	// Draw every pixel within the spaces
 	for (int y = aMinCorner.y; y < aMaxCorner.y; y++)
 	{
 		for (int x = aMinCorner.x; x < aMaxCorner.x; x++)
@@ -32,10 +33,6 @@ void draw_rectangle_solid( Surface& aSurface, Vec2f aMinCorner, Vec2f aMaxCorner
 
 void draw_rectangle_outline( Surface& aSurface, Vec2f aMinCorner, Vec2f aMaxCorner, ColorU8_sRGB aColor )
 {
-	//TODO: your implementation goes here
-	//TODO: your implementation goes here
-	//TODO: your implementation goes here
-
 	// If the max is less than the min swap them
 	if (aMaxCorner.x < aMinCorner.x)
 	{
@@ -46,7 +43,7 @@ void draw_rectangle_outline( Surface& aSurface, Vec2f aMinCorner, Vec2f aMaxCorn
 		std::swap(aMaxCorner.y, aMinCorner.y);
 	}
 
-
+	// Draw every pixel on the outline
 	for (int y = aMinCorner.y; y <= aMaxCorner.y; y++)
 	{
 		for (int x = aMinCorner.x; x <= aMaxCorner.x; x++)
@@ -57,10 +54,4 @@ void draw_rectangle_outline( Surface& aSurface, Vec2f aMinCorner, Vec2f aMaxCorn
 			}
 		}
 	}
-
-	//TODO: remove the following when you start your implementation
-	(void)aSurface; // Avoid warnings about unused arguments
-	(void)aMinCorner;
-	(void)aMaxCorner;
-	(void)aColor;
 }

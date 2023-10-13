@@ -226,7 +226,23 @@ namespace
 
 	void glfw_cb_button_( GLFWwindow* aWindow, int aButton, int aAction, int aMod )
 	{
-		if (glfwGetMouseButton(aWindow, GLFW_MOUSE_BUTTON_LEFT) == GLFW_RELEASE)
+		// Avoid polling inside a callback
+		// if (glfwGetMouseButton(aWindow, GLFW_MOUSE_BUTTON_LEFT) == GLFW_RELEASE)
+		// {
+		// 	// Mouse released so add square to list
+		// 	Squares square = {initialMouseX, initialMouseY, currentMouseX, currentMouseY};
+
+		// 	squaresList.push_back(square);
+
+		// 	// Reset initial mouse position so outline stops
+		// 	initialMouseX = 0;
+		// 	initialMouseY = 0;
+
+		// 	return;
+		// }
+
+		// More elegant solution as information is already within the callback
+		if (aButton == GLFW_MOUSE_BUTTON_LEFT && aAction == GLFW_RELEASE)
 		{
 			// Mouse released so add square to list
 			Squares square = {initialMouseX, initialMouseY, currentMouseX, currentMouseY};

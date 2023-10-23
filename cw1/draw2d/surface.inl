@@ -16,9 +16,14 @@ void Surface::set_pixel_srgb( Index aX, Index aY, ColorU8_sRGB const& aColor )
 {
 	assert( aX < mWidth && aY < mHeight ); // IMPORTANT! This line must remain the first line in this function!
 
-	//TODO: your implementation goes here
-	//TODO: your implementation goes here
-	//TODO: your implementation goes here
+	// Get pixel location
+	Index pixelLocation = get_linear_index(aX, aY);
+
+	// Set RGBx values within 1D array
+	mSurface[pixelLocation] = aColor.r;
+	mSurface[pixelLocation + 1] = aColor.g;
+	mSurface[pixelLocation + 2] = aColor.b;
+	mSurface[pixelLocation + 3] = 0; // Last value is x and therefore 0
 }
 
 inline 
@@ -35,8 +40,9 @@ auto Surface::get_height() const noexcept -> Index
 inline
 Surface::Index Surface::get_linear_index( Index aX, Index aY ) const noexcept
 {
-	//TODO: your implementation goes here
-	//TODO: your implementation goes here
-	//TODO: your implementation goes here
-	return 0; //TODO: remove this line when you implement this function.
+	// Find pixel location within 1D array
+	Index pixelLocation = ((aY * mWidth) + aX) * 4;
+
+
+	return pixelLocation; 
 }

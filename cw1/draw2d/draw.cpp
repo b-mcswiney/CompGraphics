@@ -2,21 +2,46 @@
 
 #include <algorithm>
 
+#include <iostream>
+
 #include <cmath>
 
 #include "surface.hpp"
 
 void draw_line_solid( Surface& aSurface, Vec2f aBegin, Vec2f aEnd, ColorU8_sRGB aColor )
 {
-	//TODO: your implementation goes here
-	//TODO: your implementation goes here
-	//TODO: your implementation goes here
+	// If end is behind beginning swap them
+	if (aEnd.x < aBegin.x) {
+		std::swap(aEnd, aBegin);
+	}
 
-	//TODO: remove the following when you start your implementation
-	(void)aSurface; // Avoid warnings about unused arguments until the function
-	(void)aBegin;   // is properly implemented.
-	(void)aEnd;
-	(void)aColor;
+	// Find vector d
+	float dX = aEnd.x - aBegin.x;
+	float dY = aEnd.y - aBegin.y;
+
+	float offset = 0;
+	float t = 0;
+
+	// X major
+	if(dX > dY) {
+		t = dY / dX;
+
+		for (int i = aBegin.x; i <= aEnd.x; i++) { 
+			aSurface.set_pixel_srgb(i, aBegin.y + offset, aColor);
+			offset += t;
+		}
+	}
+	// Y major
+	else {
+		t = dX / dY;
+
+		for (int i = aBegin.y; i <= aEnd.y; i++) { 
+			aSurface.set_pixel_srgb(aBegin.x, i + offset, aColor);
+			offset += t;
+		}
+	}
+
+
 }
 
 void draw_triangle_wireframe( Surface& aSurface, Vec2f aP0, Vec2f aP1, Vec2f aP2, ColorU8_sRGB aColor )

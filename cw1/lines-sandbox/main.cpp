@@ -97,7 +97,7 @@ int main( int aArgc, char* aArgv[] ) try
 	GLFWWindowDeleter windowDeleter{ window };
 
 	// Set up event handling
-	std::size_t testId = 1;
+	std::size_t testId = 2;
 	glfwSetWindowUserPointer( window, &testId );
 
 	glfwSetKeyCallback( window, &glfw_callback_key_ );
@@ -191,14 +191,14 @@ int main( int aArgc, char* aArgv[] ) try
 			case 1: {
 				// Just a diagonal line
 				draw_line_solid( surface, 
-					{ 100.f, 100.f}, { fbwidth-100.f, fbheight-100.f },
+					{ 100.f, 100.f}, { 500.f, 100.f},
 					{ 255, 255, 0 }
 				);
 			} break;
 			case 2: {
 				// Just a diagonal line, "reverse"
 				draw_line_solid( surface, 
-					{ fbwidth-100.f, fbheight-100.f }, { 100.f, 100.f}, 
+					{ 100.f, fbheight-100.f }, { 100.f, 100.f}, 
 					{ 255, 255, 0 }
 				);
 			} break;

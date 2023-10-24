@@ -29,26 +29,23 @@ struct Mat22f
 constexpr
 Mat22f operator*( Mat22f const& aLeft, Mat22f const& aRight ) noexcept
 {
-	//TODO: your implementation goes here
-	//TODO: your implementation goes here
-	//TODO: your implementation goes here
+	// Matrix calculcations
+	float new_00 = (aLeft._00 * aRight._00) + (aLeft._01 * aRight._10);
+	float new_01 = (aLeft._00 * aRight._01) + (aLeft._01 * aRight._11);
+	float new_10 = (aLeft._10 * aRight._00) + (aLeft._11 * aRight._10);
+	float new_11 = (aLeft._10 * aRight._01) + (aLeft._11 * aRight._11);
 
-	//TODO: remove the following when you start your implementation
-	(void)aLeft; // Avoid warnings about unused arguments until the function
-	(void)aRight;  // is properly implemented.
-	return Mat22f{ 1.f, 0.f, 0.f, 1.f };
+	return Mat22f{ new_00, new_01, new_10, new_11};
 }
 
 constexpr
 Vec2f operator*( Mat22f const& aLeft, Vec2f const& aRight ) noexcept
 {
-	//TODO: your implementation goes here
-	//TODO: your implementation goes here
-	//TODO: your implementation goes here
+	// Matrix calculations
+	float new_x = (aLeft._00 * aRight.x) + (aLeft._01 * aRight.y);
+	float new_y = (aLeft._10 * aRight.x) + (aLeft._11 * aRight.y);
 
-	//TODO: remove the following when you start your implementation
-	(void)aLeft; // Avoid warnings about unused arguments until the function
-	return aRight;
+	return Vec2f{new_x, new_y};
 }
 
 // Functions:
@@ -56,14 +53,12 @@ Vec2f operator*( Mat22f const& aLeft, Vec2f const& aRight ) noexcept
 inline
 Mat22f make_rotation_2d( float aAngle ) noexcept
 {
-	//TODO: your implementation goes here
-	//TODO: your implementation goes here
-	//TODO: your implementation goes here
+	float new_00 = cos(aAngle);
+	float new_01 = -1 * sin(aAngle);
+	float new_10 = sin(aAngle);
+	//note: new_11 is the same as new_00 so does not need defining
 
-	//TODO: remove the following when you start your implementation
-	(void)aAngle; // Avoid warnings about unused arguments until the function
-	              // is properly implemented.
-	return Mat22f{ 1.f, 0.f, 0.f, 1.f };
+	return Mat22f{new_00, new_01, new_10, new_00};
 }
 
 #endif // MAT22_HPP_1F974C02_D0D1_4FBD_B5EE_A69C88112088

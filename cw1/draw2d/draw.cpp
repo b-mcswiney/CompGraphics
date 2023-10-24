@@ -17,6 +17,10 @@ void draw_line_solid( Surface& aSurface, Vec2f aBegin, Vec2f aEnd, ColorU8_sRGB 
 	// initialize step
 	int step;
 
+	//initialize current x and y values
+	float currentY = aBegin.y;
+	float currentX = aBegin.x;
+
 	// Finding X major or Y Major
 	if(abs(dX) > abs(dY)) {
 		step = abs(dX);
@@ -29,14 +33,16 @@ void draw_line_solid( Surface& aSurface, Vec2f aBegin, Vec2f aEnd, ColorU8_sRGB 
 	float yInc = dY/step;
 	float xInc = dX/step;
 
-	//initialize current x and y values
-	float currentY = aBegin.y;
-	float currentX = aBegin.x;
-
 	// Set pixels in the line
 	for(int i = 0; i < step; i++)
 	{
-		aSurface.set_pixel_srgb(currentX, currentY, aColor);
+		// Only draw what's within the surface
+		if(currentX > 0 && currentX < aSurface.get_width()
+			&& currentY > 0 && currentY < aSurface.get_height()) 
+			{
+				aSurface.set_pixel_srgb(currentX, currentY, aColor);
+			}
+
 		currentY += yInc;
 		currentX += xInc;
 	}

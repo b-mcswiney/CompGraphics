@@ -198,7 +198,7 @@ int main( int aArgc, char* aArgv[] ) try
 			case 2: {
 				// Just a diagonal line, "reverse"
 				draw_line_solid( surface, 
-					{ 100.f, fbheight-100.f }, { 100.f, 100.f}, 
+					{ -100.f, -100.f }, { fbwidth+100.f, fbheight+100.f}, 
 					{ 255, 255, 0 }
 				);
 			} break;

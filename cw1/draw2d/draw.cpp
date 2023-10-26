@@ -58,103 +58,169 @@ void draw_triangle_wireframe( Surface& aSurface, Vec2f aP0, Vec2f aP1, Vec2f aP2
 
 void draw_triangle_solid( Surface& aSurface, Vec2f aP0, Vec2f aP1, Vec2f aP2, ColorU8_sRGB aColor )
 {
-	// Ensure vectors are in order of height so calculations function
-	if(aP0.y > aP1.y)
+	float maxX = aP0.x;
+	float maxY = aP0.x;
+	float minX = aP0.x;
+	float minY = aP0.x;
+
+	std::vector<Vec2f> points = {aP0, aP1, aP2};
+
+	// Find max and minimum bounds of triangle
+	for(int i = 0; i < 3; i++)
 	{
-		std::swap(aP0, aP1);
+		if(points[i].x > maxX) {maxX = points[i].x;}
+		if(points[i].y > maxY) {maxY = points[i].y;}
+		if(points[i].x < minX) {minX = points[i].x;}
+		if(points[i].x < minY) {minY = points[i].x;}
 	}
-	if(aP0.y > aP2.y)
+	
+	for(int i = minX; i <= maxX; i++)
 	{
-		std::swap(aP2, aP0);
-	}
-	if(aP1.y > aP2.y)
-	{
-		std::swap(aP2, aP1);
-	}
-
-	// Initialize variables needed for drawing triangle
-	float slopeRight;
-	float slopeLeft;
-	float currentStartX;
-	float currentEndX;
-
-	// We already have flat top
-	if(aP0.y == aP1.y)
-	{
-		// Calculate slopes
-		slopeLeft = (aP1.x - aP0.x) / (aP1.y - aP0.y);
-		slopeRight = (aP2.x - aP0.x) / (aP2.y - aP0.y);
-
-		// Initialise starting values
-		currentStartX = aP0.x;
-		currentEndX = aP0.x;
-
-		// Fill flat bottom triangle
-		for (int currentY = aP0.y; currentY <= aP1.y; currentY++)
+		for(int j = minY; j <= maxY; j++)
 		{
-			draw_line_solid(aSurface, {currentStartX, (float)currentY}, {currentEndX, (float)currentY}, aColor);
-			currentStartX += slopeLeft;
-			currentEndX += slopeRight;
+			//Equation is F(x) = n * (X-P)
+			
+			// aP0 to aP1 test
+			float dx = aP0.x - aP1.x;
+			float dy = aP0.y - aP1.y;
+			float nx = -1 * dy;
+			float ny = dx;
+
+			if( (nx * (i - aP0.x) + (ny * (j - aP0.y))) > 0)
+			{
+				continue;
+			}
+
+
+			// aP1 to aP2 test
+			dx = aP1.x - aP2.x;
+			dy = aP1.y - aP2.y;
+			nx = -1 * dy;
+			ny = dx;
+
+			if( (nx * (i - aP1.x) + (ny * (j - aP1.y))) > 0)
+			{
+				continue;
+			}
+
+			// aP2 to aP0 test
+			dx = aP2.x - aP0.x;
+			dy = aP2.y - aP0.y;
+			nx = -1 * dy;
+			ny = dx;
+
+			if( (nx * (i - aP0.x) + (ny * (j - aP0.y))) > 0)
+			{
+				continue;
+			}
+
+
+			// Only draw what's within the surface
+			if(i > 0 && (float)i < aSurface.get_width()
+				&& j > 0 && (float)j < aSurface.get_height()) 
+			{
+				aSurface.set_pixel_srgb(i, j, aColor);
+			}
 		}
 	}
-	// We have a flat bottom
-	else if(aP1.y == aP2.y)
-	{
-		// find slope and currentX variables
-		slopeLeft = (aP2.x - aP0.x) / (aP2.y - aP0.y);
-		slopeRight = (aP2.x - aP1.x) / (aP2.y - aP1.y);
 
-		// Fill flat top triangle
-		currentStartX = aP2.x;
-		currentEndX = aP2.x;
+	// 	// Ensure vectors are in order of height so calculations function
+	// if(aP0.y > aP1.y)
+	// {
+	// 	std::swap(aP0, aP1);
+	// }
+	// if(aP0.y > aP2.y)
+	// {
+	// 	std::swap(aP2, aP0);
+	// }
+	// if(aP1.y > aP2.y)
+	// {
+	// 	std::swap(aP2, aP1);
+	// }
 
-		for (int currentY = aP2.y; currentY >= aP1.y; currentY--)
-		{
-			draw_line_solid(aSurface, {currentStartX, (float)currentY}, {currentEndX, (float)currentY}, aColor);
-			currentStartX -= slopeLeft;
-			currentEndX -= slopeRight;
-		}
-	}
-	// We have neither a flat top or bottom
-	else
-	{
-		//Find mid point where we can split triangle into 2
-		float midX = aP0.x + ((aP1.y - aP0.y) / (aP2.y - aP0.y)) * (aP2.x - aP0.x);
+	// // Initialize variables needed for drawing triangle
+	// float slopeRight;
+	// float slopeLeft;
+	// float currentStartX;
+	// float currentEndX;
 
-		Vec2f aP3 = {midX, aP1.y};
+	// // We already have flat top
+	// if(aP0.y == aP1.y)
+	// {
+	// 	// Calculate slopes
+	// 	slopeLeft = (aP1.x - aP0.x) / (aP1.y - aP0.y);
+	// 	slopeRight = (aP2.x - aP0.x) / (aP2.y - aP0.y);
 
-		// Calculate slopes
-		slopeLeft = (aP1.x - aP0.x) / (aP1.y - aP0.y);
-		slopeRight = (aP3.x - aP0.x) / (aP3.y - aP0.y);
+	// 	// Initialise starting values
+	// 	currentStartX = aP0.x;
+	// 	currentEndX = aP0.x;
 
-		// Initialise starting values
-		currentStartX = aP0.x;
-		currentEndX = aP0.x;
+	// 	// Fill flat bottom triangle
+	// 	for (int currentY = aP0.y; currentY <= aP1.y; currentY++)
+	// 	{
+	// 		draw_line_solid(aSurface, {currentStartX, (float)currentY}, {currentEndX, (float)currentY}, aColor);
+	// 		currentStartX += slopeLeft;
+	// 		currentEndX += slopeRight;
+	// 	}
+	// }
+	// // We have a flat bottom
+	// else if(aP1.y == aP2.y)
+	// {
+	// 	// find slope and currentX variables
+	// 	slopeLeft = (aP2.x - aP0.x) / (aP2.y - aP0.y);
+	// 	slopeRight = (aP2.x - aP1.x) / (aP2.y - aP1.y);
 
-		// Fill flat bottom triangle
-		for (int currentY = aP0.y; currentY <= aP1.y; currentY++)
-		{
-			draw_line_solid(aSurface, {currentStartX, (float)currentY}, {currentEndX, (float)currentY}, aColor);
-			currentStartX += slopeLeft;
-			currentEndX += slopeRight;
-		}
+	// 	// Fill flat top triangle
+	// 	currentStartX = aP2.x;
+	// 	currentEndX = aP2.x;
 
-		// Reuse slope and current variables for bottom triangle
-		slopeLeft = (aP2.x - aP1.x) / (aP2.y - aP1.y);
-		slopeRight = (aP2.x - aP3.x) / (aP2.y - aP3.y);
+	// 	for (int currentY = aP2.y; currentY >= aP1.y; currentY--)
+	// 	{
+	// 		draw_line_solid(aSurface, {currentStartX, (float)currentY}, {currentEndX, (float)currentY}, aColor);
+	// 		currentStartX -= slopeLeft;
+	// 		currentEndX -= slopeRight;
+	// 	}
+	// }
+	// // We have neither a flat top or bottom
+	// else
+	// {
+	// 	//Find mid point where we can split triangle into 2
+	// 	float midX = aP0.x + ((aP1.y - aP0.y) / (aP2.y - aP0.y)) * (aP2.x - aP0.x);
 
-		// Fill flat top triangle
-		currentStartX = aP2.x;
-		currentEndX = aP2.x;
+	// 	Vec2f aP3 = {midX, aP1.y};
 
-		for (int currentY = aP2.y; currentY >= aP1.y; currentY--)
-		{
-			draw_line_solid(aSurface, {currentStartX, (float)currentY}, {currentEndX, (float)currentY}, aColor);
-			currentStartX -= slopeLeft;
-			currentEndX -= slopeRight;
-		}
+	// 	// Calculate slopes
+	// 	slopeLeft = (aP1.x - aP0.x) / (aP1.y - aP0.y);
+	// 	slopeRight = (aP3.x - aP0.x) / (aP3.y - aP0.y);
 
-	}
+	// 	// Initialise starting values
+	// 	currentStartX = aP0.x;
+	// 	currentEndX = aP0.x;
+
+	// 	// Fill flat bottom triangle
+	// 	for (int currentY = aP0.y; currentY <= aP1.y; currentY++)
+	// 	{
+	// 		draw_line_solid(aSurface, {currentStartX, (float)currentY}, {currentEndX, (float)currentY}, aColor);
+	// 		currentStartX += slopeLeft;
+	// 		currentEndX += slopeRight;
+	// 	}
+
+	// 	// Reuse slope and current variables for bottom triangle
+	// 	slopeLeft = (aP2.x - aP1.x) / (aP2.y - aP1.y);
+	// 	slopeRight = (aP2.x - aP3.x) / (aP2.y - aP3.y);
+
+	// 	// Fill flat top triangle
+	// 	currentStartX = aP2.x;
+	// 	currentEndX = aP2.x;
+
+	// 	for (int currentY = aP2.y; currentY >= aP1.y; currentY--)
+	// 	{
+	// 		draw_line_solid(aSurface, {currentStartX, (float)currentY}, {currentEndX, (float)currentY}, aColor);
+	// 		currentStartX -= slopeLeft;
+	// 		currentEndX -= slopeRight;
+	// 	}
+
+	// }
 }
 
 void draw_triangle_interp( Surface& aSurface, Vec2f aP0, Vec2f aP1, Vec2f aP2, ColorF aC0, ColorF aC1, ColorF aC2 )

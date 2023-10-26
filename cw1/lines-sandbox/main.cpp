@@ -97,7 +97,7 @@ int main( int aArgc, char* aArgv[] ) try
 	GLFWWindowDeleter windowDeleter{ window };
 
 	// Set up event handling
-	std::size_t testId = 2;
+	std::size_t testId = 1;
 	glfwSetWindowUserPointer( window, &testId );
 
 	glfwSetKeyCallback( window, &glfw_callback_key_ );
@@ -191,14 +191,14 @@ int main( int aArgc, char* aArgv[] ) try
 			case 1: {
 				// Just a diagonal line
 				draw_line_solid( surface, 
-					{ 100.f, 100.f}, { 500.f, 100.f},
+					{ 100.f, 100.f}, { fbwidth-100.f, fbheight-100.f },
 					{ 255, 255, 0 }
 				);
 			} break;
 			case 2: {
 				// Just a diagonal line, "reverse"
 				draw_line_solid( surface, 
-					{ -100.f, -100.f }, { fbwidth+100.f, fbheight+100.f}, 
+					{ fbwidth-100.f, fbheight-100.f }, { 100.f, 100.f}, 
 					{ 255, 255, 0 }
 				);
 			} break;
@@ -217,6 +217,47 @@ int main( int aArgc, char* aArgv[] ) try
 					{ fbwidth/2.f, fbheight/2.f }, { fbwidth+10.f, fbheight/2.f },
 					{ 255, 255, 0 }
 				);
+			} break;
+			case 5: {
+				// Extends 2 ways out of screen
+				draw_line_solid (surface,
+				{ fbwidth+100.f, fbheight+100.f}, { -100.f, -100.f },
+				{ 255, 255, 0});
+			} break;
+			case 6: {
+				// Two lines next to each other over 3 points
+				draw_line_solid (surface,
+				{ 100.f, 100.f }, { 200.f, 200.f },
+				{ 255, 255, 0});
+				draw_line_solid (surface,
+				{ 200.f, 200.f }, { 300.f, 300.f},
+				{ 0, 255, 255 });
+			} break;
+			case 7: {
+				// Two lines on top of each other
+				draw_line_solid (surface,
+				{ 100.f, 100.f }, { 200.f, 200.f },
+				{ 255, 255, 0});
+				draw_line_solid (surface,
+				{ 100.f, 101.f }, { 200.f, 201.f},
+				{ 0, 255, 255 });
+			} break;
+			case 8: {
+				// Two lines crossing over each other
+				draw_line_solid (surface,
+				{ 100.f, 100.f }, { 200.f, 200.f },
+				{ 255, 255, 0});
+				draw_line_solid (surface,
+				{ 100.f, 200.f }, { 200.f, 100.f},
+				{ 0, 255, 255 });
+			} break;
+			case 9: {
+				for (int i = 0; i < (int)fbheight; i++)
+				{
+					draw_line_solid (surface,
+					{ 0.f, 0.f + i }, { (float)fbwidth , 0.f + i},
+					{ 0, 255, 255 });
+				}
 			} break;
 
 			//TODO: your own tests here?

@@ -54,8 +54,8 @@
 \usepackage[
 	top=4.25cm, % Top margin
 	bottom=4cm, % Bottom margin
-	left=4.75cm, % Left margin
-	right=4.75cm, % Right margin
+	left=2cm, % Left margin
+	right=2cm, % Right margin
 	%showframe % Uncomment to show frames around the margins for debugging purposes
 ]{geometry}
 
@@ -66,7 +66,7 @@
 \usepackage[T1]{fontenc} % Output font encoding for international characters
 \usepackage[utf8]{inputenc} % Required for inputting international characters
 
-\usepackage[scale=0.96]{XCharter} % Use the XCharter text font
+\usepackage[scale=1]{XCharter} % Use the XCharter text font
 \usepackage[xcharter]{newtxmath} % Set the math font
 
 %----------------------------------------------------------------------------------------

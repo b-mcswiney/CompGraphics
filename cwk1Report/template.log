@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.10.25)  26 OCT 2023 17:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.10.25)  26 OCT 2023 18:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -950,7 +950,7 @@ LaTeX Font Info:    Trying to load font information for T1+XCharter-TLF on input
 File: T1XCharter-TLF.fd 2017/06/25 (autoinst) Font definitions for T1/XCharter-TLF.
 )
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 9.60007pt on input line 40.
+(Font)              scaled to size 10.0pt on input line 40.
 \@quotelevel=\count426
 \@quotereset=\count427
  (./template.aux)
@@ -1043,14 +1043,14 @@ Package translations Info: loading dictionary `translations-basic-dictionary' fo
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(135.15059pt, 343.99382pt, 135.15059pt)
+* h-part:(L,W,R)=(56.9055pt, 500.484pt, 56.9055pt)
 * v-part:(T,H,B)=(120.92421pt, 560.23476pt, 113.81102pt)
 * \paperwidth=614.295pt
 * \paperheight=794.96999pt
-* \textwidth=343.99382pt
+* \textwidth=500.484pt
 * \textheight=560.23476pt
-* \oddsidemargin=62.8806pt
-* \evensidemargin=62.8806pt
+* \oddsidemargin=-15.36449pt
+* \evensidemargin=-15.36449pt
 * \topmargin=11.65422pt
 * \headheight=12.0pt
 * \headsep=25.0pt
@@ -1087,19 +1087,19 @@ Package biblatex Info: ... file 'template.bbl' found.
 Package biblatex Info: Reference section=0 on input line 40.
 Package biblatex Info: Reference segment=0 on input line 40.
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 16.58891pt on input line 42.
+(Font)              scaled to size 17.28pt on input line 42.
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 11.52008pt on input line 42.
+(Font)              scaled to size 12.0pt on input line 42.
 LaTeX Font Info:    Trying to load font information for OT1+XCharter-TLF on input line 42.
  (/usr/share/texlive/texmf-dist/tex/latex/xcharter/OT1XCharter-TLF.fd
 File: OT1XCharter-TLF.fd 2017/06/25 (autoinst) Font definitions for OT1/XCharter-TLF.
 )
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 11.52008pt on input line 42.
+(Font)              scaled to size 12.0pt on input line 42.
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 8.44806pt on input line 42.
+(Font)              scaled to size 8.8pt on input line 42.
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 6.33604pt on input line 42.
+(Font)              scaled to size 6.6pt on input line 42.
 LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 42.
  (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxmia.fd
 File: untxmia.fd 2018/04/14 Fontinst v1.933 font definitions for U/ntxmia.
@@ -1115,25 +1115,25 @@ File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 13.82408pt on input line 46.
+(Font)              scaled to size 14.4pt on input line 46.
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/b/n' will be
-(Font)              scaled to size 13.82408pt on input line 46.
+(Font)              scaled to size 14.4pt on input line 46.
  (./template.toc
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/b/n' will be
-(Font)              scaled to size 9.60007pt on input line 1.
+(Font)              scaled to size 10.0pt on input line 1.
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 9.60007pt on input line 2.
+(Font)              scaled to size 10.0pt on input line 2.
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 7.00804pt on input line 2.
+(Font)              scaled to size 7.3pt on input line 2.
 LaTeX Font Info:    Font shape `OT1/XCharter-TLF/m/n' will be
-(Font)              scaled to size 5.28003pt on input line 2.
+(Font)              scaled to size 5.5pt on input line 2.
 )
 \tf@toc=\write4
 \openout4 = `template.toc'.
 
  [2]
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/b/n' will be
-(Font)              scaled to size 11.52008pt on input line 55.
+(Font)              scaled to size 12.0pt on input line 55.
 <Figures//particleFieldZoom.png, id=11, 320.19624pt x 203.76125pt>
 File: Figures//particleFieldZoom.png Graphic file (type png)
 <use Figures//particleFieldZoom.png>
@@ -1158,14 +1158,14 @@ Package logreq Info: Writing requests to 'template.run.xml'.
  ) 
 Here is how much of TeX's memory you used:
  19394 strings out of 478287
- 381694 string characters out of 5849288
- 1060260 words of memory out of 5000000
+ 381598 string characters out of 5849288
+ 1059239 words of memory out of 5000000
  37348 multiletter control sequences out of 15000+600000
  545515 words of font info for 94 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  86i,7n,91p,782b,850s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/xcharter/xch_rydp4l.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/xcharter/XCharter-Bold.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/xcharter/XCharter-Roman.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/xcharter/XCharterMathMI.pfb>
-Output written on template.pdf (4 pages, 128897 bytes).
+Output written on template.pdf (4 pages, 128908 bytes).
 PDF statistics:
  38 PDF objects out of 1000 (max. 8388607)
  21 compressed objects within 1 object stream

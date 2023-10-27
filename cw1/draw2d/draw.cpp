@@ -63,6 +63,7 @@ void draw_triangle_solid( Surface& aSurface, Vec2f aP0, Vec2f aP1, Vec2f aP2, Co
 	float minX = aP0.x;
 	float minY = aP0.x;
 
+	// Put points into list so we can iterate through them
 	std::vector<Vec2f> points = {aP0, aP1, aP2};
 
 	// Find max and minimum bounds of triangle

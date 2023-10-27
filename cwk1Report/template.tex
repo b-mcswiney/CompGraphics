@@ -97,15 +97,32 @@ bottom left corner.
 
 
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
-	\includegraphics[scale = 0.6]{ship}
-	\caption{Ship drawin using implementation}
+	\begin{minipage}[b]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{ship}
+		\caption{Ship drawn.}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{shipRotate}
+		\caption{Ship rotated}
+  	\end{minipage}
 \end{figure}
 
-\subsection{2D Rotation}
-
 \subsection{Drawing Triangles}
+\begin{flushleft}
+	This algorithm begins by finding the possible bounds of the triangle by 
+	iterating through the points given to find the maximum and minimum coordinates. 
+	Once the bounds of the triangle are discovered the program will iterate 
+	through every pixel within the bounds. Every loop the program will check 
+	if the current pixel (\(X\)) is within the triangle by performing 3 half-plane tests.
+	These tests are performed using the following algorithm \(F(X)=n \cdot (X - P)\).
+	Should \(F(X) > 0\) be true for any of the lines the program continues onto 
+	the next pixel. Should the pixel pass all the half-plane tests the program will 
+	then check the pixel is within the window and if it is the pixel gets drawn. 
+
+\end{flushleft}
 
 \subsection{Barycentric Interpolation}
 

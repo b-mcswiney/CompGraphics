@@ -139,94 +139,78 @@ float find_triangle_area(Vec2f A, Vec2f B, Vec2f C)
 
 void draw_triangle_interp( Surface& aSurface, Vec2f aP0, Vec2f aP1, Vec2f aP2, ColorF aC0, ColorF aC1, ColorF aC2 )
 {
-	// float maxX = aP0.x;
-	// float maxY = aP0.x;
-	// float minX = aP0.x;
-	// float minY = aP0.x;
+	float maxX = aP0.x;
+	float maxY = aP0.x;
+	float minX = aP0.x;
+	float minY = aP0.x;
 
-	// // Put points into list so we can iterate through them
-	// std::vector<Vec2f> points = {aP0, aP1, aP2};
+	// Put points into list so we can iterate through them
+	std::vector<Vec2f> points = {aP0, aP1, aP2};
 
-	// // Find max and minimum bounds of triangle
-	// for(int i = 0; i < 3; i++)
-	// {
-	// 	std::cout << "point numb " << i << ": " << points[i].x << " , " << points[i].y << std::endl;
-	// 	if(points[i].x > maxX) {maxX = points[i].x;}
-	// 	if(points[i].y > maxY) {maxY = points[i].y;}
-	// 	if(points[i].x < minX) {minX = points[i].x;}
-	// 	if(points[i].x < minY) {minY = points[i].y;}
-	// }
+	// Find max and minimum bounds of triangle
+	for(int i = 0; i < 3; i++)
+	{
+		if(points[i].x > maxX) {maxX = points[i].x;}
+		if(points[i].y > maxY) {maxY = points[i].y;}
+		if(points[i].x < minX) {minX = points[i].x;}
+		if(points[i].y < minY) {minY = points[i].y;}
+	}
 
-	// std::cout << "max = " << maxX << " , " << maxY << std::endl;
-	// std::cout << "min = " << minX << " , " << minY << std::endl;
+	// Find area of whole triangle
+	float totalArea = find_triangle_area(aP0, aP1, aP2);	
 
-	// // Find area of whole triangle
-	// float totalArea = find_triangle_area(aP0, aP1, aP2);	
+	for(int y = minY; y <= maxY; y++)
+	{
+		for(int x = minX; x <= maxX; x++)
+		{
+			// Stop calculations if point is outside bounds
+			if(x < 0 || (float)x > aSurface.get_width() || y < 0 || (float)y > aSurface.get_height())
+			{
+				continue;
+			}
 
-	// for(int y = minY; y <= maxY; y++)
-	// {
-	// 	for(int x = minX; x <= maxX; x++)
-	// 	{
-	// 		// // Stop calculations if point is outside bounds
-	// 		// if(x < 0 || (float)x > aSurface.get_width() || y < 0 || (float)y > aSurface.get_height())
-	// 		// {
-	// 		// 	continue;
-	// 		// }
+			Vec2f currentPoint = {(float)x, (float)y};
 
-	// 		// Vec2f currentPoint = {(float)x, (float)y};
+			// Alpha calculation
+			float alpha = find_triangle_area(aP1, aP2, currentPoint) / totalArea;
 
-	// 		// // Alpha calculation
-	// 		// float alpha = find_triangle_area(aP1, aP2, currentPoint) / totalArea;
+			if(alpha > 1 || alpha < 0)
+			{
+				continue;
+			}
 
-	// 		// if(alpha > 1 || alpha < 0)
-	// 		// {
-	// 		// 	continue;
-	// 		// }
-
-	// 		// // Beta calculation
-	// 		// float beta = find_triangle_area(aP0, currentPoint, aP2) / totalArea;
+			// Beta calculation
+			float beta = find_triangle_area(aP0, currentPoint, aP2) / totalArea;
 
 
-	// 		// if(beta > 1 || beta < 0)
-	// 		// {
-	// 		// 	continue;
-	// 		// }
+			if(beta > 1 || beta < 0)
+			{
+				continue;
+			}
 
-	// 		// // Gamma calculation
-	// 		// float gamma = find_triangle_area(aP0, aP1, currentPoint) / totalArea;
+			// Gamma calculation
+			float gamma = find_triangle_area(aP0, aP1, currentPoint) / totalArea;
 
 
-	// 		// if(gamma > 1 || gamma < 0)
-	// 		// {
-	// 		// 	continue;
-	// 		// }
+			if(gamma > 1 || gamma < 0)
+			{
+				continue;
+			}
 
-	// 		// if((alpha + beta + gamma) == 1)
-	// 		// {
-	// 		// 	// Only draw what's within the surface
-	// 		// 	if(x > 0 && (float)x < aSurface.get_width()
-	// 		// 		&& y > 0 && (float)y < aSurface.get_height()) 
-	// 		// 	{
-	// 		// 		aSurface.set_pixel_srgb(x, y, linear_to_srgb( aC0 ));
-	// 		// 	}
-	// 		// }
+			// Only draw what's within the surface
+			if(x > 0 && (float)x < aSurface.get_width()
+				&& y > 0 && (float)y < aSurface.get_height()) 
+			{
+				float red = aC0.r * alpha + aC1.r * beta + aC2.r * gamma;
+				float green = aC0.g * alpha + aC1.g * beta + aC2.g * gamma;
+				float blue = aC0.b * alpha + aC1.b * beta + aC2.b * gamma;
 
-	// 		// Only draw what's within the surface
-	// 		// if(x > 0 && (float)x < aSurface.get_width()
-	// 		// 	&& y > 0 && (float)y < aSurface.get_height()) 
-	// 		// {
-	// 		// 	aSurface.set_pixel_srgb(x, y, linear_to_srgb( aC0 ));
-	// 		// }
-	// 	}
-	// }
+				ColorF colourInterpol = {red, green, blue};
 
-	// //TODO: Remove the following when you start your implementation!
-	// //TODO: This draws a solid triangle until you implement the function
-	// //TODO: properly. (This is such that you can see the asteroids with solid
-	//TODO: shading until that point.)
-	draw_triangle_solid( aSurface, aP0, aP1, aP2, linear_to_srgb( aC0 ) );
-	(void)aC1;
-	(void)aC2;
+				aSurface.set_pixel_srgb(x, y, linear_to_srgb( colourInterpol ));
+			}
+		}
+	}
 }
 
 void draw_rectangle_solid( Surface& aSurface, Vec2f aMinCorner, Vec2f aMaxCorner, ColorU8_sRGB aColor )

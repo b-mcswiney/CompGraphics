@@ -5,10 +5,10 @@ ColorU8_sRGB_Alpha ImageRGBA::get_pixel( Index aX, Index aY ) const
 	
  	int pixelIndex = get_linear_index(aX, aY);
 
-	float red = mData[pixelIndex];
-	float green = mData[pixelIndex + 1];
-	float blue = mData[pixelIndex + 2];
-	float opacity = mData[pixelIndex + 3];
+	uint8_t red = mData[pixelIndex];
+	uint8_t green = mData[pixelIndex + 1];
+	uint8_t blue = mData[pixelIndex + 2];
+	uint8_t opacity = mData[pixelIndex + 3];
 
 	return { red, green, blue, opacity };
 }

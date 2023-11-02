@@ -7,6 +7,9 @@
 #include <cstring>
 #include <cassert>
 
+// ###########REMOVE THIS#####
+#include <iostream>
+
 #include <stb_image.h>
 
 #include "surface.hpp"
@@ -51,6 +54,30 @@ std::unique_ptr<ImageRGBA> load_image( char const* aPath )
 
 void blit_masked( Surface& aSurface, ImageRGBA const& aImage, Vec2f aPosition )
 {
+	for(int y = 0; (float)y < aImage.get_height(); y++)
+	{
+		for(int x = 0; (float)x < aImage.get_width(); x++)
+		{
+			int surfaceX = x + aPosition.x;
+			int surfaceY = y + aPosition.y;
+
+			ColorU8_sRGB_Alpha pixel = aImage.get_pixel(x, y);
+
+
+			if(pixel.r <= 0)
+			{
+				continue;
+			}
+
+			// Only draw what's within the surface
+			if(surfaceX > 0 && (float)surfaceX < aSurface.get_width()
+				&& surfaceY > 0 && (float)surfaceY < aSurface.get_height()) 
+			{
+				ColorU8_sRGB colour = {pixel.r, pixel.g, pixel.b};
+				aSurface.set_pixel_srgb(surfaceX, surfaceY, colour);
+			}
+		}
+	}
 	//TODO: your implementation goes here
 	//TODO: your implementation goes here
 	//TODO: your implementation goes here

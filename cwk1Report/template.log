@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.10.25)  27 OCT 2023 11:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.10.25)  2 NOV 2023 16:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1150,27 +1150,33 @@ File: Figures//shipRotate.png Graphic file (type png)
 Package pdftex.def Info: Figures//shipRotate.png  used on input line 108.
 (pdftex.def)             Requested size: 200.19054pt x 157.0509pt.
  [3 <./Figures//particleFieldZoom.png>]
+<Figures//interpol.png, id=20, 1304.875pt x 777.90625pt>
+File: Figures//interpol.png Graphic file (type png)
+<use Figures//interpol.png>
+Package pdftex.def Info: Figures//interpol.png  used on input line 133.
+(pdftex.def)             Requested size: 300.29344pt x 179.0215pt.
 
-LaTeX Warning: Empty bibliography on input line 146.
 
-[4 <./Figures//ship.png> <./Figures//shipRotate.png>] (./template.aux)
+LaTeX Warning: Empty bibliography on input line 153.
+
+[4 <./Figures//ship.png> <./Figures//shipRotate.png> <./Figures//interpol.png>] [5] (./template.aux)
 Package logreq Info: Writing requests to 'template.run.xml'.
 \openout1 = `template.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 19412 strings out of 478287
- 381943 string characters out of 5849288
+ 19420 strings out of 478287
+ 382136 string characters out of 5849288
  1058239 words of memory out of 5000000
- 37360 multiletter control sequences out of 15000+600000
+ 37367 multiletter control sequences out of 15000+600000
  548587 words of font info for 100 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  86i,8n,91p,782b,850s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/xcharter/xch_abgjzu.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/xcharter/xch_rydp4l.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/xcharter/XCharter-Bold.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/xcharter/XCharter-Roman.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/xcharter/XCharterMathMI.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
-Output written on template.pdf (4 pages, 149331 bytes).
+Output written on template.pdf (5 pages, 178397 bytes).
 PDF statistics:
- 54 PDF objects out of 1000 (max. 8388607)
- 30 compressed objects within 1 object stream
+ 59 PDF objects out of 1000 (max. 8388607)
+ 32 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

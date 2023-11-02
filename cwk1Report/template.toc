@@ -3,9 +3,9 @@
 \contentsline {subsection}{\numberline {1.2}Drawing Lines}{3}{}%
 \contentsline {subsection}{\numberline {1.3}Drawing Triangles}{4}{}%
 \contentsline {subsection}{\numberline {1.4}Barycentric Interpolation}{4}{}%
-\contentsline {subsection}{\numberline {1.5}Blitting Images}{4}{}%
-\contentsline {subsection}{\numberline {1.6}Testing: Lines}{4}{}%
-\contentsline {subsection}{\numberline {1.7}Testing: Triangles}{4}{}%
-\contentsline {subsection}{\numberline {1.8}Benchmark: Blitting}{4}{}%
-\contentsline {subsection}{\numberline {1.9}Benchmark: Line drawing}{4}{}%
-\contentsline {subsection}{\numberline {1.10}Your own spaceship}{4}{}%
+\contentsline {subsection}{\numberline {1.5}Blitting Images}{5}{}%
+\contentsline {subsection}{\numberline {1.6}Testing: Lines}{5}{}%
+\contentsline {subsection}{\numberline {1.7}Testing: Triangles}{5}{}%
+\contentsline {subsection}{\numberline {1.8}Benchmark: Blitting}{5}{}%
+\contentsline {subsection}{\numberline {1.9}Benchmark: Line drawing}{5}{}%
+\contentsline {subsection}{\numberline {1.10}Your own spaceship}{5}{}%

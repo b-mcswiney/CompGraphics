@@ -850,6 +850,11 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/xcharter/zchmi.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/xcharter/XCharterMathMI.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
+INPUT ./Figures//interpol.png
+INPUT ./Figures//interpol.png
+INPUT Figures//interpol.png
+INPUT ./Figures//interpol.png
+INPUT ./Figures//interpol.png
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/newtx/ntxsy.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm

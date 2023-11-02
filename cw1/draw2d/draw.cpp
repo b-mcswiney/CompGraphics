@@ -81,19 +81,11 @@ void draw_triangle_solid( Surface& aSurface, Vec2f aP0, Vec2f aP1, Vec2f aP2, Co
 	// Find max and minimum bounds of triangle
 	for(int i = 0; i < 3; i++)
 	{
+		if(points[i].x < minX) {minX = points[i].x;}
+		if(points[i].y < minY) {minY = points[i].y;}
 		if(points[i].x > maxX) {maxX = points[i].x;}
 		if(points[i].y > maxY) {maxY = points[i].y;}
-		if(points[i].x < minX) {minX = points[i].x;}
-		if(points[i].x < minY) {minY = points[i].y;}
 	}
-	
-	// Vec2f P = {0, 3};
-	// Vec2f Q = {5, 0};
-	// Vec2f R = {6, 4};
-	// Vec2f S = {1, 1};
-
-	// std::cout << "half line test result 1 " << half_line_test(Q, P, R) << std::endl;
-	// std::cout << "half line test result 2 " << half_line_test(Q, P, S) << std::endl;
 
 	for(int y = minY; y <= maxY; y++)
 	{
@@ -103,19 +95,19 @@ void draw_triangle_solid( Surface& aSurface, Vec2f aP0, Vec2f aP1, Vec2f aP2, Co
 			Vec2f currentP = {(float)x, (float)y};
 
 			// Half line test for aP0 to AP1
-			if(half_line_test(aP0, aP1, currentP) > 0)
+			if(half_line_test(aP0, aP1, currentP) >= 0)
 			{
 				continue;
 			}
 
 			// Half line test for aP1 to AP2
-			if(half_line_test(aP1, aP2, currentP) > 0)
+			if(half_line_test(aP1, aP2, currentP) >= 0)
 			{
 				continue;
 			}
 
 			// Half line test for aP2 to AP0
-			if(half_line_test(aP2, aP0, currentP) > 0)
+			if(half_line_test(aP2, aP0, currentP) >= 0)
 			{
 				continue;
 			}
@@ -130,56 +122,8 @@ void draw_triangle_solid( Surface& aSurface, Vec2f aP0, Vec2f aP1, Vec2f aP2, Co
 
 		}
 	}
-	// for(int j = minY; j <= maxY; j++)
-	// {
-	// 	for(int i = minX; i <= maxX; i++)
-	// 	{
-	// 		//Equation is F(x) = n * (X-P)
-			
-	// 		// aP0 to aP1 test
-	// 		float dx = aP0.x - aP1.x;
-	// 		float dy = aP0.y - aP1.y;
-	// 		float nx = -1 * dy;
-	// 		float ny = dx;
-
-	// 		if( (nx * (i - aP0.x) + (ny * (j - aP0.y))) > 0)
-	// 		{
-	// 			continue;
-	// 		}
-
-
-	// 		// aP1 to aP2 test
-	// 		dx = aP1.x - aP2.x;
-	// 		dy = aP1.y - aP2.y;
-	// 		nx = -1 * dy;
-	// 		ny = dx;
-
-	// 		if( (nx * (i - aP1.x) + (ny * (j - aP1.y))) > 0)
-	// 		{
-	// 			continue;
-	// 		}
-
-	// 		// aP2 to aP0 test
-	// 		dx = aP2.x - aP0.x;
-	// 		dy = aP2.y - aP0.y;
-	// 		nx = -1 * dy;
-	// 		ny = dx;
-
-	// 		if( (nx * (i - aP0.x) + (ny * (j - aP0.y))) > 0)
-	// 		{
-	// 			continue;
-	// 		}
-
-
-			// // Only draw what's within the surface
-			// if(i > 0 && (float)i < aSurface.get_width()
-			// 	&& j > 0 && (float)j < aSurface.get_height()) 
-			// {
-			// 	aSurface.set_pixel_srgb(i, j, aColor);
-			// }
-	// 	}
-	// }
 }
+
 
 float find_triangle_area(Vec2f A, Vec2f B, Vec2f C)
 {

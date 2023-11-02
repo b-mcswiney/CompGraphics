@@ -228,7 +228,17 @@ int main( int aArgc, char* aArgv[] ) try
 					{ 0.f, 1.f, 1.f }
 				);
 			} break;
-
+			case 4: {
+				// Points in different order
+				draw_triangle_interp( surface, 
+					{ 200.f, 500.f },
+					{ 300.f, 100.f},
+					{ 200.f, 300.f  },
+					{ 1.f, 1.f, 0.f },
+					{ 1.f, 0.f, 1.f },
+					{ 0.f, 1.f, 1.f }
+				);
+			} break;
 			//TODO: your own tests here?
 			//TODO: your own tests here?
 		}

@@ -850,11 +850,6 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/xcharter/zchmi.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/xcharter/XCharterMathMI.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/stxscr.tfm
-INPUT ./Figures//interpol.png
-INPUT ./Figures//interpol.png
-INPUT Figures//interpol.png
-INPUT ./Figures//interpol.png
-INPUT ./Figures//interpol.png
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/newtx/ntxsy.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
@@ -864,6 +859,11 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txmiaSTbb.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txmiaX.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/xcharter/XCharter-Roman-tlf-ot1G.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/xcharter/XCharter-Roman-tlf-ot1.tfm
+INPUT ./Figures//interpol.png
+INPUT ./Figures//interpol.png
+INPUT Figures//interpol.png
+INPUT ./Figures//interpol.png
+INPUT ./Figures//interpol.png
 INPUT template.aux
 INPUT template.run.xml
 OUTPUT template.run.xml

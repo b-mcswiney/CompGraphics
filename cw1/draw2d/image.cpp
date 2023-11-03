@@ -64,7 +64,7 @@ void blit_masked( Surface& aSurface, ImageRGBA const& aImage, Vec2f aPosition )
 			ColorU8_sRGB_Alpha pixel = aImage.get_pixel(x, y);
 
 
-			if(pixel.r <= 0)
+			if(pixel.a <= 0)
 			{
 				continue;
 			}
@@ -78,12 +78,6 @@ void blit_masked( Surface& aSurface, ImageRGBA const& aImage, Vec2f aPosition )
 			}
 		}
 	}
-	//TODO: your implementation goes here
-	//TODO: your implementation goes here
-	//TODO: your implementation goes here
-	(void)aSurface;  // Avoid warnings about unused arguments until the
-	(void)aImage;    // function is properly implemented.
-	(void)aPosition;
 }
 
 namespace

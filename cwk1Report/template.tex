@@ -50,10 +50,10 @@
 %	OBJECTIVE
 %----------------------------------------------------------------------------------------
 
-\section{Tasks}
+\section{Implementation}
 
 \subsection{Drawing Pixels}
-\subsection*{Pixel Locations}
+
 Within the window the coordinates count from the top left of the window
 to the bottom right. This means that the pixel (0, 0) is in the top left
 corner, (w-1, 0) is in the top right corner and (0, h-1) is in the 
@@ -66,7 +66,6 @@ bottom left corner.
 \end{figure}
 
 \subsection{Drawing Lines}
-\subsection*{Line Implementation}
 \begin{flushleft}
 	The line implementation works by starting with two points. The start and
 	end of the line. The program will then take these values and calculate 2
@@ -126,24 +125,75 @@ bottom left corner.
 
 \subsection{Barycentric Interpolation}
 \begin{flushleft}
-	
+	The algorithm begins exactly the same as the previous triangle algorithm, by 
+	finding the bounds of the triangle to be drawn. The algorithm then loops through
+	this rectangle and performs calculations to determine whether or not a pixel is within
+	the triangle to be drawn. The changes from the previous algorithm begin with these checks.
+	These checks involve finding \(\alpha\), \(\beta\) and \(\gamma\) values for a given point.
+	These values are known as Barycentric Coordinates and can be found for any given point (\(U\))
+	on a triangle.
 \end{flushleft}
+\begin{flushleft}
+	Given a triangle with points \(A\), \(B\) and \(C\) the program need to find the vectors \(u = B-A\) and \(y = C-A\).
+	Once these two vectors have been found the program then uses the following formula to find the area of the triangle \(ABC\).
+\end{flushleft}
+\begin{align*}
+	area(ABC) = \frac{(u_{x} \times v_{y}) - (u_{y} \times v_{x})}{2}
+\end{align*}
+\begin{flushleft}
+	The code can then call a function for this formula for each of the three sub triangles. Once each sub area has 
+	been calculated the program can then perform the following formulas to find the values of \(\alpha\), \(\beta\) and \(\gamma\).
+\end{flushleft}
+\begin{align*}
+	\alpha = \frac{area(BCU)}{area(ABC)}, \beta = \frac{area(AUC)}{area(ABC)}, \gamma = \frac{area(ABU)}{area(ABC)}
+\end{align*}
+\pagebreak
+\begin{flushleft}
+	Finally, should each of these values be between 0 and 1 the algorithm will draw a pixel at the given point.
+	This pixel shall be a colour interpolated from the three points on the triangle using the following formula 
+	for each RGB value.
+\end{flushleft}
+\begin{align*}
+	colour = A_{colour} \times \alpha + B_{colour} \times \beta + C_{colour} \times \gamma
+\end{align*}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\textwidth]{interpol.png}
+	\caption{Asteroids drawn using Barycentric Interpolation}
 \end{figure}
 
 \subsection{Blitting Images}
-
+\subsection*{Helper Algorithims}
+\begin{flushleft}
+	These helper algorithms differ slightly from the ones used in order to set pixels. This is due to the fact that
+	they use RGBA representation as opposed to RGBx representations. This means that as well as returning the RGB values
+	when getting a pixel the program must also return an A value. This A value is used to indicate the opacity of a pixel 
+	which is then later used to check whether a pixel should or should not be drawn on the surface from the image.
+\end{flushleft}
+\subsection*{Main Blitting Algorithm}
+\begin{flushleft}
+	The blitting algorithm begins by starting a loop through the image to be rendered. Within this loop 
+	the program first finds the current position on the surface by adding the starting position to the x and y
+	values being used to loop through the image. The algorithm then calls the helper algorithm to get a pixel from the image.
+	The program then checks if the current pixel should be masked or not by checking if the A value is greater than 0. The program
+	then makes sure that the current pixel is within the bounds of the surface and if it is the pixel gets drawn onto the surface.
+\end{flushleft}
+\begin{flushleft}
+	One possible optimisation that could be made is improving the clipping of the image. For example, currently the program will check every 
+	pixel outside the bounds of the surface even if no more pixels could possibly be on the surface. This could be further optimised
+	by stopping the current loop if the following pixels will always be outside the borders of the surface.
+\end{flushleft}
+\section{Testing}
 \subsection{Testing: Lines}
 
 \subsection{Testing: Triangles}
 
-\subsection{Benchmark: Blitting}
+\section{Benchmarks}
+\subsection{Blitting}
 
-\subsection{Benchmark: Line drawing}
+\subsection{Line drawing}
 
-\subsection{Your own spaceship}
+\section{My own spaceship}
 
 \subsection*{}
 %----------------------------------------------------------------------------------------

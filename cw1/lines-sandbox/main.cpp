@@ -236,19 +236,19 @@ int main( int aArgc, char* aArgv[] ) try
 			case 7: {
 				// Two lines on top of each other
 				draw_line_solid (surface,
-				{ 100.f, 100.f }, { 200.f, 200.f },
+				{ 100.f, 100.f }, { 200.f, 100.f },
 				{ 255, 255, 0});
 				draw_line_solid (surface,
-				{ 100.f, 101.f }, { 200.f, 201.f},
+				{ 100.f, 101.f }, { 200.f, 101.f},
 				{ 0, 255, 255 });
 			} break;
 			case 8: {
 				// Two lines crossing over each other
 				draw_line_solid (surface,
-				{ 100.f, 100.f }, { 200.f, 200.f },
+				{ 100.f, 100.f }, { 200.f, 100.f },
 				{ 255, 255, 0});
 				draw_line_solid (surface,
-				{ 100.f, 200.f }, { 200.f, 100.f},
+				{ 100.f, 100.f }, { 200.f, 100.f},
 				{ 0, 255, 255 });
 			} break;
 			case 9: {

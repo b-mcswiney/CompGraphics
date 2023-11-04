@@ -27,4 +27,15 @@ TEST_CASE( "Partially offscreen", "[clip]" )
 		auto const pixels = max_col_pixel_count( surface );
 		REQUIRE( 1 == pixels );
 	}
+	SECTION( "both sides")
+	{
+		draw_line_solid (surface,
+			{-100.f, -100.f},
+			{surface.get_width() + 100.f, surface.get_height() + 100.f},
+			{ 255, 255, 255}
+		);
+
+		auto const pixels = max_col_pixel_count( surface );
+		REQUIRE(1 == pixels);
+	}
 }

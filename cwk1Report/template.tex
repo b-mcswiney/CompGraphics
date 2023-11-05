@@ -91,7 +91,7 @@ bottom left corner.
 	and should this check return true the pixel will be drawn. This is done to 
 	avoid out of bounds errors within the program. The last stage of the loop is 
 	to move to the next pixel in the line by adding the \(x\) and \(y\) increase 
-	to our current pixel location.
+	to our current pixel location. (\cite{Pradhan:2023})
 \end{flushleft}
 
 
@@ -185,9 +185,90 @@ bottom left corner.
 \end{flushleft}
 \section{Testing}
 \subsection{Testing: Lines}
+\subsection*{Test 1 {-} Drawing multiple directions off screen}
+This test was implemented as it is important that the program can handle lines 
+being drawn off screen no matter the direction. Currently the tests only check for 
+1 direction off screen so I decided to expand on that to all directions. Furthermore, 
+if the program cannot handle lines being drawn off screen the program will most likely
+crash which is unacceptable.
 
+\subsection*{Test 2 {-} Two connected lines}
+This test was implemented in order to ensure there's no pixel gaps when two lines 
+are drawn next to each other. This is a desireable effect as when drawing more 
+complex shapes using lines we must ensure the program will not leave any gaps while
+drawing.
+
+
+\subsection*{Test 3 {-} Two lines running parallel next to each other}
+This test was implemented to ensure no gaps are present when lines are parallel to each other.
+This is desireable for the same reason as the previous test. That reason being, 
+when drawing more complex shapes with lines we want to ensure no gaps are present.
+\subsection*{Test 4 {-} Two lines overlapping}
+This test was implemented to ensure that a second line drawn after another line in The
+same place would overwrite the previous line. This feature is important as some animations
+ will require changes in pixels so it is important pixels drawn later can fully overwrite
+ previous pixels.
+\subsection*{Test 5 {-} Whole screen drawn onto}
+This test ensures that every pixel within a surface can be drawn onto. This is important
+as we want to make sure that every pixel can be used. This also ensures that any bug 
+related to drawing to specific pixels can be identified and fixed.
+
+\subsection*{Visualisations}
+\begin{figure}[H]
+	\centering
+	\begin{minipage}[b]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{offscreen2}
+		\caption{Demostration of test 1 using lines sandbox.}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{2connected}
+		\caption{Demostration of test 2 using lines sandbox}
+  	\end{minipage}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\begin{minipage}[b]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{2ontop}
+		\caption{Demostration of test 3 using lines sandbox}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{2over}
+		\caption{Demostration of test 4 using lines sandbox}
+  	\end{minipage}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\textwidth]{fullscreen}
+	\caption{Demostration of test 5 using lines sandbox}	
+\end{figure}
 \subsection{Testing: Triangles}
-
+\subsection*{Test 1 {-} Flat triangle}
+For this test we want to ensure that drawing a flat triangle just draws a line on the surface.
+This could be useful for certain animations that involve a triangle morphing in order to be flatter. 
+This test ensures that the triangle does not disappear early during this animation.
+\subsection*{Test 2 {-} Any point order}
+This test ensures that no matter what order the points are inputted the triangle is still drawn.
+This is useful as due to rotation there is no way to know what order the points of the triangle will 
+arrive in. Therefore this test exists to ensures the drawing algorithm accounts for this.
+\subsection*{Test 3 {-} Connected triangles}
+This test ensures there are no gaps between 2 drawn triangles next to each other. This is a disireable
+feature as many shapes are drawn using triangles so it is important to ensure there are no gaps 
+between drawn triangles.
+\subsection*{Visualisations}
+\begin{figure}[H]
+	\centering
+	\begin{minipage}[b]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{flatTriangle}
+		\caption{Demostration of test 1 using triangles sandbox. This test does not pass in the current version.}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{connectedtriangles}
+		\caption{Demostration of test 3 using triangles sandbox.}
+  	\end{minipage}
+\end{figure}
 \section{Benchmarks}
 \subsection{Blitting}
 

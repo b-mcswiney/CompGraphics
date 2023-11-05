@@ -221,8 +221,12 @@ int main( int aArgc, char* aArgv[] ) try
 			case 5: {
 				// Extends 2 ways out of screen
 				draw_line_solid (surface,
-				{ fbwidth+100.f, fbheight+100.f}, { -100.f, -100.f },
+				{ fbwidth+100.f, fbheight/2.f}, { -100.f, fbheight/2.f },
 				{ 255, 255, 0});
+				draw_line_solid (surface,
+				{ fbwidth/2.f, fbheight + 100.f}, { fbwidth/2.f, -100.f},
+				{ 255, 255, 0});
+				
 			} break;
 			case 6: {
 				// Two lines next to each other over 3 points

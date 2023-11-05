@@ -239,6 +239,50 @@ int main( int aArgc, char* aArgv[] ) try
 					{ 0.f, 1.f, 1.f }
 				);
 			} break;
+			case 5: {
+				ColorF colour = {1.0f, 1.0f , 0.0f };
+				// Flat triangle
+				draw_triangle_solid ( surface,
+				{ 200.f, 200.f },
+				{ 400.f, 200.f },
+				{ 800.f, 200.f },
+				linear_to_srgb( colour )
+				);
+			} break;
+			case 6: {
+				draw_triangle_interp ( surface,
+				{ 200.f, 200.f },
+				{ 400.f, 400.f },
+				{ 600.f, 200.f },
+				{ 1.f, 1.f, 0.f },
+				{ 1.f, 0.f, 1.f },
+				{ 0.f, 1.f, 1.f }
+				);
+				draw_triangle_interp ( surface,
+				{ 401.f, 400.f },
+				{ 601.f, 200.f },
+				{ 800.f, 400.f },
+				{ 1.f, 1.f, 0.f },
+				{ 1.f, 0.f, 1.f },
+				{ 0.f, 1.f, 1.f }
+				);
+				// draw_triangle_interp ( surface,
+				// { 601.f, 200.f },
+				// { 801.f, 400.f },
+				// { 1000.f, 200.f },
+				// { 1.f, 1.f, 0.f },
+				// { 1.f, 0.f, 1.f },
+				// { 0.f, 1.f, 1.f }
+				// );
+				// draw_triangle_interp ( surface,
+				// { 401.f, 401.f },
+				// { 801.f, 401.f },
+				// { 600.f, 600.f },
+				// { 1.f, 1.f, 0.f },
+				// { 1.f, 0.f, 1.f },
+				// { 0.f, 1.f, 1.f }
+				// );
+			} break;
 			//TODO: your own tests here?
 			//TODO: your own tests here?
 		}

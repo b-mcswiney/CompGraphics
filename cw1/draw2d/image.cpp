@@ -63,12 +63,10 @@ void blit_masked( Surface& aSurface, ImageRGBA const& aImage, Vec2f aPosition )
 
 			ColorU8_sRGB_Alpha pixel = aImage.get_pixel(x, y);
 
-
 			if(pixel.a <= 0)
 			{
 				continue;
 			}
-
 			// Only draw what's within the surface
 			if(surfaceX > 0 && (float)surfaceX < aSurface.get_width()
 				&& surfaceY > 0 && (float)surfaceY < aSurface.get_height()) 

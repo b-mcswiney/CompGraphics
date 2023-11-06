@@ -31,6 +31,7 @@ TEST_CASE( "flat triangle", "[flat triangle][!mayfail]")
                 if( ptr[0] > 0)
                 {
                     rowCount += 1;
+                    break;
                 }
             }
         }

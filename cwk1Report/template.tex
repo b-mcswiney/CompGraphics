@@ -41,7 +41,7 @@
 
 \maketitle % Insert the title, author and date using the information specified above
 
-\pagebreak
+\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
 
 \tableofcontents
 
@@ -252,10 +252,11 @@ This test ensures that the triangle does not disappear early during this animati
 This test ensures that no matter what order the points are inputted the triangle is still drawn.
 This is useful as due to rotation there is no way to know what order the points of the triangle will 
 arrive in. Therefore this test exists to ensures the drawing algorithm accounts for this.
-\subsection*{Test 3 {-} Connected triangles}
-This test ensures there are no gaps between 2 drawn triangles next to each other. This is a disireable
-feature as many shapes are drawn using triangles so it is important to ensure there are no gaps 
-between drawn triangles.
+\subsection*{Test 3 {-} Triangles drawn outside}
+This test ensures the program does not crash when an entire triangle is drawn outside the bounds of 
+the screen. This is useful as for certain things (such as objects in a video game for example) a user 
+may want to keep track of things even if they are not within the bounds of the screen. This program 
+should be able to handle this.
 \subsection*{Visualisations}
 \begin{figure}[H]
 	\centering

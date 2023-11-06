@@ -1,13 +1,13 @@
-\contentsline {section}{\numberline {1}Implementation}{3}{}%
-\contentsline {subsection}{\numberline {1.1}Drawing Pixels}{3}{}%
-\contentsline {subsection}{\numberline {1.2}Drawing Lines}{3}{}%
-\contentsline {subsection}{\numberline {1.3}Drawing Triangles}{4}{}%
-\contentsline {subsection}{\numberline {1.4}Barycentric Interpolation}{4}{}%
-\contentsline {subsection}{\numberline {1.5}Blitting Images}{5}{}%
-\contentsline {section}{\numberline {2}Testing}{6}{}%
-\contentsline {subsection}{\numberline {2.1}Testing: Lines}{6}{}%
-\contentsline {subsection}{\numberline {2.2}Testing: Triangles}{7}{}%
-\contentsline {section}{\numberline {3}Benchmarks}{8}{}%
-\contentsline {subsection}{\numberline {3.1}Blitting}{8}{}%
-\contentsline {subsection}{\numberline {3.2}Line drawing}{8}{}%
-\contentsline {section}{\numberline {4}My own spaceship}{8}{}%
+\contentsline {section}{\numberline {1}Implementation}{2}{}%
+\contentsline {subsection}{\numberline {1.1}Drawing Pixels}{2}{}%
+\contentsline {subsection}{\numberline {1.2}Drawing Lines}{2}{}%
+\contentsline {subsection}{\numberline {1.3}Drawing Triangles}{3}{}%
+\contentsline {subsection}{\numberline {1.4}Barycentric Interpolation}{3}{}%
+\contentsline {subsection}{\numberline {1.5}Blitting Images}{4}{}%
+\contentsline {section}{\numberline {2}Testing}{5}{}%
+\contentsline {subsection}{\numberline {2.1}Testing: Lines}{5}{}%
+\contentsline {subsection}{\numberline {2.2}Testing: Triangles}{6}{}%
+\contentsline {section}{\numberline {3}Benchmarks}{7}{}%
+\contentsline {subsection}{\numberline {3.1}Blitting}{7}{}%
+\contentsline {subsection}{\numberline {3.2}Line drawing}{7}{}%
+\contentsline {section}{\numberline {4}My own spaceship}{7}{}%

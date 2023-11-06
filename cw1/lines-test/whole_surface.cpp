@@ -27,9 +27,9 @@ TEST_CASE( "no gaps in whole surface ", "[whole surface]")
         auto const counts = count_pixel_neighbours( surface );
 
         // All inner pixels should have 8 neighbours
-        REQUIRE( counts[8] ==  49);
+        REQUIRE( counts[8] ==  64);
         // All edges should have 5 neighbours
-        REQUIRE( counts[5] == 28);
+        REQUIRE( counts[5] == 32);
         // 4 pixels should have 3 neighbours (corners)
         REQUIRE( counts[3] == 4);
         // All pixels should have neighbours

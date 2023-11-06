@@ -26,6 +26,7 @@ void draw_line_solid( Surface& aSurface, Vec2f aBegin, Vec2f aEnd, ColorU8_sRGB 
 	float currentX = aBegin.x;
 
 	// Finding X major or Y Major
+	// Absolute value ensures we never divide by 0
 	if(abs(dX) > abs(dY)) {
 		step = abs(dX);
 	}

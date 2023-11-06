@@ -69,14 +69,22 @@ GENERATED += $(OBJDIR)/clip.o
 GENERATED += $(OBJDIR)/connected.o
 GENERATED += $(OBJDIR)/cull.o
 GENERATED += $(OBJDIR)/helpers.o
+GENERATED += $(OBJDIR)/overlap.o
+GENERATED += $(OBJDIR)/parallel.o
 GENERATED += $(OBJDIR)/specials.o
 GENERATED += $(OBJDIR)/thin_line.o
+GENERATED += $(OBJDIR)/two_connected.o
+GENERATED += $(OBJDIR)/whole_surface.o
 OBJECTS += $(OBJDIR)/clip.o
 OBJECTS += $(OBJDIR)/connected.o
 OBJECTS += $(OBJDIR)/cull.o
 OBJECTS += $(OBJDIR)/helpers.o
+OBJECTS += $(OBJDIR)/overlap.o
+OBJECTS += $(OBJDIR)/parallel.o
 OBJECTS += $(OBJDIR)/specials.o
 OBJECTS += $(OBJDIR)/thin_line.o
+OBJECTS += $(OBJDIR)/two_connected.o
+OBJECTS += $(OBJDIR)/whole_surface.o
 
 # Rules
 # #############################################
@@ -152,10 +160,22 @@ $(OBJDIR)/cull.o: cull.cpp
 $(OBJDIR)/helpers.o: helpers.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/overlap.o: overlap.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/parallel.o: parallel.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/specials.o: specials.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/thin_line.o: thin_line.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/two_connected.o: two_connected.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/whole_surface.o: whole_surface.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 

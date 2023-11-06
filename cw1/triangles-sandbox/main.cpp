@@ -283,6 +283,27 @@ int main( int aArgc, char* aArgv[] ) try
 				// { 0.f, 1.f, 1.f }
 				// );
 			} break;
+			case 7: {
+				draw_triangle_solid( surface,
+            	{20.f, 20.f}, {30.f, 30.f}, {40.f, 20.f},
+            	{ 100 ,100 ,100 }
+       		 	);
+        		draw_triangle_solid( surface,
+            	{30.f, 30.f}, {20.f, 20.f}, {40.f, 20.f},
+            	{ 100 ,100 ,100 }
+        		);
+        		draw_triangle_solid( surface,
+            		{30.f, 30.f}, {40.f, 20.f}, {20.f, 20.f},
+            		{ 100 ,100 ,100 }
+        		);
+			} break;
+			case 8: {
+				draw_triangle_solid( surface,
+					{ -5.f, -5.f }, { (fbheight * 2.f) + 700.f, -5.f }, { -5.f, (fbheight * 2.f) + 500.f },
+					{ 100, 100, 100 }
+				);
+			} break;
+
 			//TODO: your own tests here?
 			//TODO: your own tests here?
 		}

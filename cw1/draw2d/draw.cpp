@@ -42,8 +42,8 @@ void draw_line_solid( Surface& aSurface, Vec2f aBegin, Vec2f aEnd, ColorU8_sRGB 
 	for(int i = 0; i < step; i++)
 	{
 		// Only draw what's within the surface
-		if(currentX > 0 && currentX < aSurface.get_width()
-			&& currentY > 0 && currentY < aSurface.get_height()) 
+		if(currentX >= 0 && currentX < aSurface.get_width()
+			&& currentY >= 0 && currentY < aSurface.get_height()) 
 			{
 				aSurface.set_pixel_srgb(currentX, currentY, aColor);
 			}
@@ -96,27 +96,27 @@ void draw_triangle_solid( Surface& aSurface, Vec2f aP0, Vec2f aP1, Vec2f aP2, Co
 			Vec2f currentP = {(float)x, (float)y};
 
 			// Half line test for aP0 to AP1
-			if(half_line_test(aP0, aP1, currentP) >= 0)
+			if(half_line_test(aP0, aP1, currentP) > 0)
 			{
 				continue;
 			}
 
 			// Half line test for aP1 to AP2
-			if(half_line_test(aP1, aP2, currentP) >= 0)
+			if(half_line_test(aP1, aP2, currentP) > 0)
 			{
 				continue;
 			}
 
 			// Half line test for aP2 to AP0
-			if(half_line_test(aP2, aP0, currentP) >= 0)
+			if(half_line_test(aP2, aP0, currentP) > 0)
 			{
 				continue;
 			}
 
 
 			// Only draw what's within the surface
-			if(x > 0 && (float)x < aSurface.get_width()
-				&& y > 0 && (float)y < aSurface.get_height()) 
+			if(x >= 0 && (float)x < aSurface.get_width()
+				&& y >= 0 && (float)y < aSurface.get_height()) 
 			{
 				aSurface.set_pixel_srgb(x, y, aColor);
 			}
@@ -199,8 +199,8 @@ void draw_triangle_interp( Surface& aSurface, Vec2f aP0, Vec2f aP1, Vec2f aP2, C
 			}
 
 			// Only draw what's within the surface
-			if(x > 0 && (float)x < aSurface.get_width()
-				&& y > 0 && (float)y < aSurface.get_height()) 
+			if(x >= 0 && (float)x < aSurface.get_width()
+				&& y >= 0 && (float)y < aSurface.get_height()) 
 			{
 				float red = aC0.r * alpha + aC1.r * beta + aC2.r * gamma;
 				float green = aC0.g * alpha + aC1.g * beta + aC2.g * gamma;

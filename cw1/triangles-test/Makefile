@@ -65,12 +65,18 @@ endif
 GENERATED :=
 OBJECTS :=
 
+GENERATED += $(OBJDIR)/any_order.o
 GENERATED += $(OBJDIR)/degenerate.o
+GENERATED += $(OBJDIR)/drawn_outside.o
+GENERATED += $(OBJDIR)/flat_triangle.o
 GENERATED += $(OBJDIR)/helpers.o
 GENERATED += $(OBJDIR)/solid_interp.o
 GENERATED += $(OBJDIR)/specials.o
 GENERATED += $(OBJDIR)/srgb.o
+OBJECTS += $(OBJDIR)/any_order.o
 OBJECTS += $(OBJDIR)/degenerate.o
+OBJECTS += $(OBJDIR)/drawn_outside.o
+OBJECTS += $(OBJDIR)/flat_triangle.o
 OBJECTS += $(OBJDIR)/helpers.o
 OBJECTS += $(OBJDIR)/solid_interp.o
 OBJECTS += $(OBJDIR)/specials.o
@@ -138,7 +144,16 @@ endif
 # File Rules
 # #############################################
 
+$(OBJDIR)/any_order.o: any_order.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/degenerate.o: degenerate.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/drawn_outside.o: drawn_outside.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/flat_triangle.o: flat_triangle.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/helpers.o: helpers.cpp

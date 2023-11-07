@@ -3,6 +3,7 @@
 #include <algorithm>
 
 #include <cassert>
+#include <cstring>
 
 #include "../draw2d/image.hpp"
 #include "../draw2d/surface.hpp"
@@ -31,23 +32,39 @@ void blit_no_mask( Surface& aSurface, ImageRGBA const& aImage, Vec2f aPosition )
 
 void blit_memcpy(  Surface& aSurface, ImageRGBA const& aImage, Vec2f aPosition )
 {
+	// Clipping X values
+	int clipping_x_offset = 0;
+	if(aPosition.x < 0)
+	{
+		clipping_x_offset = abs(aPosition.x);
+
+	}
+	if(aPosition.x > aSurface.get_width())
+	{
+		clipping_x_offset = aSurface.get_width() - aPosition.x;
+	}
+	// Clipping Y values
+	int clipping_y_offset = 0;
+	if(aPosition.y < 0)
+	{
+		clipping_y_offset = abs(aPosition.y);
+
+	}
+	if(aPosition.y > aSurface.get_height())
+	{
+		clipping_y_offset = aSurface.get_height() - aPosition.y;
+	}
+
+	const uint8_t *surfacePtr = aSurface.get_surface_ptr() + 
+								aSurface.get_linear_index(aPosition.x + clipping_x_offset, aPosition.y + clipping_y_offset);
+
 	for(int y = 0; (float)y < aImage.get_height(); y++)
 	{
-		for(int x = 0; (float)x < aImage.get_width(); x++)
-		{
-			int surfaceX = x + aPosition.x;
-			int surfaceY = y + aPosition.y;
+		
+		const uint8_t *imageptr = aImage.get_image_ptr ()+ aImage.get_linear_index(clipping_x_offset , y);
 
-			ColorU8_sRGB_Alpha pixel = aImage.get_pixel(x, y);
-
-			// Only draw what's within the surface
-			if(surfaceX > 0 && (float)surfaceX < aSurface.get_width()
-				&& surfaceY > 0 && (float)surfaceY < aSurface.get_height()) 
-			{
-				ColorU8_sRGB colour = {pixel.r, pixel.g, pixel.b};
-				aSurface.set_pixel_srgb(surfaceX, surfaceY, colour);
-			}
-		}
+		// Normally would not allow casting however since we are just testing for time it is allowed
+		std::memcpy(const_cast<uint8_t*>(surfacePtr), imageptr, (aImage.get_width() - clipping_x_offset) * 4);
 	}
 }
 

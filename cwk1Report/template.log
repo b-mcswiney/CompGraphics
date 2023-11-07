@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.10.25)  6 NOV 2023 14:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.10.25)  7 NOV 2023 14:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1183,36 +1183,30 @@ File: Figures//fullscreen.png Graphic file (type png)
 Package pdftex.def Info: Figures//fullscreen.png  used on input line 243.
 (pdftex.def)             Requested size: 150.14671pt x 89.51074pt.
  [6 <./Figures//offscreen2.png> <./Figures//2connected.png> <./Figures//2ontop.png> <./Figures//2over.png> <./Figures//fullscreen.png>]
-<Figures//flatTriangle.png, id=46, 1304.875pt x 777.90625pt>
-File: Figures//flatTriangle.png Graphic file (type png)
-<use Figures//flatTriangle.png>
-Package pdftex.def Info: Figures//flatTriangle.png  used on input line 264.
-(pdftex.def)             Requested size: 200.19054pt x 119.33975pt.
-<Figures//connectedtriangles.png, id=47, 671.50874pt x 264.99pt>
-File: Figures//connectedtriangles.png Graphic file (type png)
-<use Figures//connectedtriangles.png>
-Package pdftex.def Info: Figures//connectedtriangles.png  used on input line 269.
-(pdftex.def)             Requested size: 200.19054pt x 78.99622pt.
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 281.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
 LaTeX Font Info:    Font shape `T1/XCharter-TLF/m/it' will be
-(Font)              scaled to size 10.0pt on input line 285.
- [7 <./Figures//flatTriangle.png> <./Figures//connectedtriangles.png>] (./template.aux)
+(Font)              scaled to size 10.0pt on input line 313.
+ [7] [8] (./template.aux)
 Package logreq Info: Writing requests to 'template.run.xml'.
 \openout1 = `template.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 19711 strings out of 478287
- 388420 string characters out of 5849288
- 1061306 words of memory out of 5000000
- 37656 multiletter control sequences out of 15000+600000
- 554949 words of font info for 102 fonts, out of 8000000 for 9000
+ 19710 strings out of 478287
+ 388398 string characters out of 5849288
+ 1064304 words of memory out of 5000000
+ 37651 multiletter control sequences out of 15000+600000
+ 555262 words of font info for 103 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 86i,9n,91p,782b,1287s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/xcharter/xch_rydp4l.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/xcharter/xch_abgjzu.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/xcharter/XCharter-Bold.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/xcharter/XCharter-Italic.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/xcharter/XCharter-Roman.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/xcharter/XCharterMathMI.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
-Output written on template.pdf (7 pages, 368244 bytes).
+ 86i,9n,91p,782b,1293s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/xcharter/xch_rydp4l.enc}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/xcharter/xch_abgjzu.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/xcharter/XCharter-Bold.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/xcharter/XCharter-Italic.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/xcharter/XCharter-Roman.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/xcharter/XCharterMathMI.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
+Output written on template.pdf (8 pages, 285871 bytes).
 PDF statistics:
- 86 PDF objects out of 1000 (max. 8388607)
- 41 compressed objects within 1 object stream
+ 91 PDF objects out of 1000 (max. 8388607)
+ 47 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 56 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

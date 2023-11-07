@@ -63,7 +63,7 @@ void blit_masked( Surface& aSurface, ImageRGBA const& aImage, Vec2f aPosition )
 
 			ColorU8_sRGB_Alpha pixel = aImage.get_pixel(x, y);
 
-			if(pixel.a <= 0)
+			if(pixel.a < 128)
 			{
 				continue;
 			}

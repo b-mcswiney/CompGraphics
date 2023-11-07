@@ -19,30 +19,38 @@
 
 \refsection{0}
   \datalist[entry]{nyt/global//global/global}
-    \entry{Pradhan:2023}{article}{}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=bc3c25c02a6c7a3c4c9538cf2d3029dc}{%
-           family={Pradhan},
-           familyi={P\bibinitperiod},
-           given={Shivam},
-           giveni={S\bibinitperiod},
+    \entry{Kamble:2021}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=eed1a20b312592a3f8ac7cb6c9dca6af}{%
+           family={Kamble},
+           familyi={K\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2cedfca6bd7dd8f8ce4870c925f8b8d6}{%
+           family={S.},
+           familyi={S\bibinitperiod},
+           given={Gawade},
+           giveni={G\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{bc3c25c02a6c7a3c4c9538cf2d3029dc}
-      \strng{fullhash}{bc3c25c02a6c7a3c4c9538cf2d3029dc}
-      \strng{bibnamehash}{bc3c25c02a6c7a3c4c9538cf2d3029dc}
-      \strng{authorbibnamehash}{bc3c25c02a6c7a3c4c9538cf2d3029dc}
-      \strng{authornamehash}{bc3c25c02a6c7a3c4c9538cf2d3029dc}
-      \strng{authorfullhash}{bc3c25c02a6c7a3c4c9538cf2d3029dc}
-      \field{sortinit}{P}
-      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \strng{namehash}{b7b8271f8c1f4720eb5548f4c49bfd5f}
+      \strng{fullhash}{b7b8271f8c1f4720eb5548f4c49bfd5f}
+      \strng{bibnamehash}{b7b8271f8c1f4720eb5548f4c49bfd5f}
+      \strng{authorbibnamehash}{b7b8271f8c1f4720eb5548f4c49bfd5f}
+      \strng{authornamehash}{b7b8271f8c1f4720eb5548f4c49bfd5f}
+      \strng{authorfullhash}{b7b8271f8c1f4720eb5548f4c49bfd5f}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Geeks for Geeks}
-      \field{title}{DDA Line generation Algorithm in Computer Graphics}
-      \field{year}{2023}
+      \field{journaltitle}{International Journal of Advanced Research in Computer and Communication Engineering}
+      \field{number}{12}
+      \field{title}{DDA Line Drawing Algorithm}
+      \field{volume}{10}
+      \field{year}{2021}
     \endentry
   \enddatalist
 \endrefsection

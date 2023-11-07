@@ -91,7 +91,7 @@ bottom left corner.
 	and should this check return true the pixel will be drawn. This is done to 
 	avoid out of bounds errors within the program. The last stage of the loop is 
 	to move to the next pixel in the line by adding the \(x\) and \(y\) increase 
-	to our current pixel location. (\cite{Pradhan:2023})
+	to our current pixel location. (\cite{Kamble:2021})
 \end{flushleft}
 
 
@@ -257,22 +257,50 @@ This test ensures the program does not crash when an entire triangle is drawn ou
 the screen. This is useful as for certain things (such as objects in a video game for example) a user 
 may want to keep track of things even if they are not within the bounds of the screen. This program 
 should be able to handle this.
-\subsection*{Visualisations}
-\begin{figure}[H]
-	\centering
-	\begin{minipage}[b]{0.4\textwidth}
-		\includegraphics[width=\textwidth]{flatTriangle}
-		\caption{Demostration of test 1 using triangles sandbox. This test does not pass in the current version.}
-	\end{minipage}
-	\hfill
-	\begin{minipage}[b]{0.4\textwidth}
-		\includegraphics[width=\textwidth]{connectedtriangles}
-		\caption{Demostration of test 3 using triangles sandbox.}
-  	\end{minipage}
-\end{figure}
-\section{Benchmarks}
-\subsection{Blitting}
 
+\section{Benchmarks}
+\subsection{Computer Information}
+\begin{flushleft}
+	All tests were performed using an 11th generation intel core i3\-1115G4.
+	The CPU has 4 caches present: a data cache with 48KiB, an instruction cache with 32KiB,
+	and two unified cahces. One unified cache has 1280KiB, the other has 6144KiB.
+	The computer the tests were performed on also has access to 8gb of RAM.
+\end{flushleft}
+\subsection{Blitting}
+\begin{table}[ht]
+	\caption{Blitting Benchmark Results} % title of Table
+	\centering 
+	\begin{tabular}{c c c c c} 
+	\hline
+	Method name & surface size & Time(ns) & CPU(ns) & Iteraions \\ [0.5ex] 
+	\hline
+	Blitting with alpha mask & 320x240 & 3831941 & 3815423 & 176 \\ 
+	Blitting with alpha mask & 7680x4320 & 5756367 & 5729355 & 125 \\
+	Blitting with no alpha mask & 320x240 & 3953626 & 3946029 & 178 \\
+	Blitting with no alpha mask & 7680x4320 & 7282696 & 7257732 & 94 \\
+	Blitting with \verb|std::memcpy| & 320x240 & 226571 & 224768 & 3272 \\ 
+	Blitting with \verb|std::memcpy| & 7680x4320 & 232251 & 230998 & 3122 \\[1ex] 
+	\end{tabular}
+\end{table}
+\begin{flushleft}
+	From this data I can see that the fastest algorithm in terms of time taken is 
+	clearly blitting through the use of \verb|std::memcpy|. This is most likely due
+	to the algorithm involving \verb|std::memcpy| only containing one \verb|for| loop.
+	This algorithm achieves this through directly copying every row of the image onto
+	the surface from a specified point. Another benefit of this algorithm that can be seen from 
+	the data is that it scales well with larger images. This effect is also due to the algorithm
+	only having one \verb|for| loop as opposed to two.
+\end{flushleft}
+\begin{flushleft}
+	This data also seems to indicate that blitting with alpha masking is faster than
+	blitting with alpha masking. The most likely reason for this is due to my implementation 
+	of clipping. Clipping is performed by checking is a pixel is in bounds right before it
+	is about to be drawn. When alpha masking is performed this (relatively expensive) check 
+	is skipped for every pixel that is to be masked. On the other hand, if alpha masking is not 
+	performed this check is done for every pixel in the bounds of the image. Should this clipping 
+	check be moved to a place in which it's performed no matter whether alpha masking is present or not
+	I expect blitting with no alpha mask to be slightly faster as there is one less check to perform.
+\end{flushleft}
 \subsection{Line drawing}
 
 \section{My own spaceship}

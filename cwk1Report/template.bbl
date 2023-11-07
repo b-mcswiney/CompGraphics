@@ -21,25 +21,25 @@
   \datalist[entry]{nyt/global//global/global}
     \entry{Kamble:2021}{article}{}
       \name{author}{2}{}{%
-        {{un=0,uniquepart=base,hash=eed1a20b312592a3f8ac7cb6c9dca6af}{%
+        {{un=0,uniquepart=base,hash=84684b97bc5c511495c18e8946fdf19a}{%
            family={Kamble},
            familyi={K\bibinitperiod},
-           given={P.},
-           giveni={P\bibinitperiod},
+           given={A.\bibnamedelimi A.},
+           giveni={A\bibinitperiod\bibinitdelim A\bibinitperiod},
            givenun=0}}%
-        {{un=0,uniquepart=base,hash=2cedfca6bd7dd8f8ce4870c925f8b8d6}{%
-           family={S.},
-           familyi={S\bibinitperiod},
-           given={Gawade},
-           giveni={G\bibinitperiod},
+        {{un=0,uniquepart=base,hash=5274268fa8818ef963d6f692d44abb57}{%
+           family={Gawade},
+           familyi={G\bibinitperiod},
+           given={S.\bibnamedelimi S.},
+           giveni={S\bibinitperiod\bibinitdelim S\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{b7b8271f8c1f4720eb5548f4c49bfd5f}
-      \strng{fullhash}{b7b8271f8c1f4720eb5548f4c49bfd5f}
-      \strng{bibnamehash}{b7b8271f8c1f4720eb5548f4c49bfd5f}
-      \strng{authorbibnamehash}{b7b8271f8c1f4720eb5548f4c49bfd5f}
-      \strng{authornamehash}{b7b8271f8c1f4720eb5548f4c49bfd5f}
-      \strng{authorfullhash}{b7b8271f8c1f4720eb5548f4c49bfd5f}
+      \strng{namehash}{3676d088d107099b340b47142906e241}
+      \strng{fullhash}{3676d088d107099b340b47142906e241}
+      \strng{bibnamehash}{3676d088d107099b340b47142906e241}
+      \strng{authorbibnamehash}{3676d088d107099b340b47142906e241}
+      \strng{authornamehash}{3676d088d107099b340b47142906e241}
+      \strng{authorfullhash}{3676d088d107099b340b47142906e241}
       \field{sortinit}{K}
       \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
       \field{extradatescope}{labelyear}
@@ -51,6 +51,45 @@
       \field{title}{DDA Line Drawing Algorithm}
       \field{volume}{10}
       \field{year}{2021}
+    \endentry
+    \entry{Madan:2014}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=b68b7dcfa1a1b109d9656fe15565ecd1}{%
+           family={Madan},
+           familyi={M\bibinitperiod},
+           given={L},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a1b7cbbb18910f934a4c2b8609e10025}{%
+           family={Anand},
+           familyi={A\bibinitperiod},
+           given={K},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b6cf0dcc27d88582895a5c27322f49c1}{%
+           family={Bhushan},
+           familyi={B\bibinitperiod},
+           given={B},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9895c2405d0ebeea816b9739ca5070c0}
+      \strng{fullhash}{9895c2405d0ebeea816b9739ca5070c0}
+      \strng{bibnamehash}{9895c2405d0ebeea816b9739ca5070c0}
+      \strng{authorbibnamehash}{9895c2405d0ebeea816b9739ca5070c0}
+      \strng{authornamehash}{9895c2405d0ebeea816b9739ca5070c0}
+      \strng{authorfullhash}{9895c2405d0ebeea816b9739ca5070c0}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Journal of Research in Science And Technology}
+      \field{number}{3}
+      \field{title}{BRESENHAM'S LINES ALGORITHM}
+      \field{volume}{4}
+      \field{year}{2014}
     \endentry
   \enddatalist
 \endrefsection

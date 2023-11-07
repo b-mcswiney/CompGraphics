@@ -1,15 +1,15 @@
-[0] Config.pm:307> INFO - This is Biber 2.17
+[1] Config.pm:307> INFO - This is Biber 2.17
 [1] Config.pm:310> INFO - Logfile is 'template.blg'
-[157] biber:340> INFO - === Tue Nov  7, 2023, 13:25:56
-[182] Biber.pm:418> INFO - Reading 'template.bcf'
-[305] Biber.pm:972> INFO - Found 1 citekeys in bib section 0
-[331] Biber.pm:4383> INFO - Processing section 0
-[351] Biber.pm:4574> INFO - Looking for bibtex file 'sample.bib' for section 0
-[352] bibtex.pm:1713> INFO - LaTeX decoding ...
-[359] bibtex.pm:1518> INFO - Found BibTeX data source 'sample.bib'
-[431] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[431] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[431] Biber.pm:4203> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
-[431] Biber.pm:4209> INFO - No sort tailoring available for locale 'en-US'
-[434] bbl.pm:654> INFO - Writing 'template.bbl' with encoding 'UTF-8'
-[436] bbl.pm:757> INFO - Output to template.bbl
+[166] biber:340> INFO - === Tue Nov  7, 2023, 14:39:57
+[192] Biber.pm:418> INFO - Reading 'template.bcf'
+[350] Biber.pm:972> INFO - Found 2 citekeys in bib section 0
+[382] Biber.pm:4383> INFO - Processing section 0
+[408] Biber.pm:4574> INFO - Looking for bibtex file 'sample.bib' for section 0
+[410] bibtex.pm:1713> INFO - LaTeX decoding ...
+[422] bibtex.pm:1518> INFO - Found BibTeX data source 'sample.bib'
+[503] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[504] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[504] Biber.pm:4203> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
+[504] Biber.pm:4209> INFO - No sort tailoring available for locale 'en-US'
+[509] bbl.pm:654> INFO - Writing 'template.bbl' with encoding 'UTF-8'
+[512] bbl.pm:757> INFO - Output to template.bbl

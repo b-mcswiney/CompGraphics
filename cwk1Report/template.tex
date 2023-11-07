@@ -274,12 +274,12 @@ should be able to handle this.
 	\hline
 	Method name & surface size & Time(ns) & CPU(ns) & Iteraions \\ [0.5ex] 
 	\hline
-	Blitting with alpha mask & 320x240 & 3831941 & 3815423 & 176 \\ 
-	Blitting with alpha mask & 7680x4320 & 5756367 & 5729355 & 125 \\
-	Blitting with no alpha mask & 320x240 & 3953626 & 3946029 & 178 \\
-	Blitting with no alpha mask & 7680x4320 & 7282696 & 7257732 & 94 \\
-	Blitting with \verb|std::memcpy| & 320x240 & 226571 & 224768 & 3272 \\ 
-	Blitting with \verb|std::memcpy| & 7680x4320 & 232251 & 230998 & 3122 \\[1ex] 
+	alpha masking & 320x240 & 3,831,941 & 3,815,423 & 176 \\ 
+	alpha masking & 7680x4320 & 5,756,367 & 5,729,355 & 125 \\
+	no alpha masking & 320x240 & 3,953,626 & 3,946,029 & 178 \\
+	no alpha masking & 7680x4320 & 7,282,696 & 7,257,732 & 94 \\
+	\verb|std::memcpy| & 320x240 & 226,571 & 224,768 & 3,272 \\ 
+	\verb|std::memcpy| & 7680x4320 & 232,251 & 230,998 & 3,122 \\[1ex] 
 	\end{tabular}
 \end{table}
 \begin{flushleft}
@@ -302,6 +302,38 @@ should be able to handle this.
 	I expect blitting with no alpha mask to be slightly faster as there is one less check to perform.
 \end{flushleft}
 \subsection{Line drawing}
+\begin{table}[!htb]
+    \caption{Line Benchmark Results}
+    \begin{minipage}{.5\linewidth}
+      \caption{DDA Results}
+      \centering
+        \begin{tabular}{c c c c}
+            Test & surface size & Time(ns) & Iteraions \\ [0.5ex]
+			\hline
+			Diagonal & 320x240 & 1,667 & 358,427 \\
+			Diagonal & 7680x4320 & 53,748 & 12,640 \\
+			Horizontal & 320x240 & 1,020 & 628,431  \\
+			Horizontal & 7680x4320 & 24,398 & 29,017 \\
+			Fullscreen & 320x240 & 451,847 & 1,277 \\
+			Fullscreen & 7680x4320 & 170,828,342 & 4 \\
+        \end{tabular}
+    \end{minipage}%
+	\vline
+    \begin{minipage}{.5\linewidth}
+      \centering
+        \caption{Bresenham Results}
+        \begin{tabular}{c c c c}
+            Test & surface size & Time(ns) & Iteraions \\ [0.5ex]
+			\hline
+			Diagonal & 320x240 & 3,173 & 213,402 \\
+			Diagonal & 7680x4320 & 77,639 & 8,978 \\
+			Horizontal & 320x240 & 1,905 & 354,100 \\
+			Horizontal & 7680x4320 & 45,958 & 15,184 \\
+			Fullscreen & 320x240 & 772,071 & 817 \\
+			Fullscreen & 7680x4320 & 335,260,630 & 2 \\
+        \end{tabular}
+    \end{minipage} 
+\end{table}
 (\cite{Madan:2014})
 \section{My own spaceship}
 

@@ -14,103 +14,43 @@ float find_area_triangle(Vec2f A, Vec2f B, Vec2f C);
 
 void draw_line_solid( Surface& aSurface, Vec2f aBegin, Vec2f aEnd, ColorU8_sRGB aColor )
 {
-	// Calculate slope
-	float dx = aEnd.x - aBegin.x;
-	float dy = aEnd.y - aEnd.x;
+	// Calculate D vector
+	float dX = aEnd.x - aBegin.x;
+	float dY = aEnd.y - aBegin.y;
 
-	// Initialise driver
-	float driver;
-	float currentPxl;
+	// initialize length
+	int length;
 
-	if(abs(dx) > abs(dy))
-	{
-		driver = dy/dx;
-		currentPxl = aBegin.y;
+	//initialize current x and y values
+	float currentY = aBegin.y;
+	float currentX = aBegin.x;
+
+	// Finding X major or Y Major
+	// Absolute value ensures we never divide by 0
+	if(abs(dX) > abs(dY)) {
+		length = abs(dX);
 	}
-	else
-	{
-		driver = dx/dy;
-		currentPxl = aBegin.x;
+	else {
+		length = abs(dY);
 	}
-	int error = abs(driver)-1;
 
-	if(abs(dx)>abs(dy))
+	// Find step in each iteration
+	float yInc = dY/length;
+	float xInc = dX/length;
+
+	// Set pixels in the line
+	for(int i = 0; i < length; i++)
 	{
-		for(int i = aBegin.x; i <= aEnd.x; i++)
-		{
-			if(i >= 0 && i < (float)aSurface.get_width()
-				&& currentPxl >= 0 && currentPxl < (float)aSurface.get_height()) 
+		// Only draw what's within the surface
+		if(currentX >= 0 && currentX < aSurface.get_width()
+			&& currentY >= 0 && currentY < aSurface.get_height()) 
 			{
-				aSurface.set_pixel_srgb(i, currentPxl, aColor);
+				aSurface.set_pixel_srgb(currentX, currentY, aColor);
 			}
 
-			if(error >= 0)
-			{
-				currentPxl += 1;
-				error -= 1;
-			}
-
-			error += driver;
-		}
+		currentY += yInc;
+		currentX += xInc;
 	}
-	else
-	{
-		for(int i = aBegin.y; i <= aEnd.y; i++)
-		{
-			if(currentPxl >= 0 && currentPxl < (float)aSurface.get_width()
-				&& i >= 0 && i < (float)aSurface.get_height()) 
-			{
-				aSurface.set_pixel_srgb(currentPxl, i, aColor);
-			}
-
-			if(error >= 0)
-			{
-				currentPxl += 1;
-				error -= 1;
-			}
-
-			error += driver;
-		}
-	}
-	
-
-	// // Calculate D vector
-	// float dX = aEnd.x - aBegin.x;
-	// float dY = aEnd.y - aBegin.y;
-
-	// // initialize step
-	// int step;
-
-	// //initialize current x and y values
-	// float currentY = aBegin.y;
-	// float currentX = aBegin.x;
-
-	// // Finding X major or Y Major
-	// // Absolute value ensures we never divide by 0
-	// if(abs(dX) > abs(dY)) {
-	// 	step = abs(dX);
-	// }
-	// else {
-	// 	step = abs(dY);
-	// }
-
-	// // Find step in each iteration
-	// float yInc = dY/step;
-	// float xInc = dX/step;
-
-	// // Set pixels in the line
-	// for(int i = 0; i < step; i++)
-	// {
-	// 	// Only draw what's within the surface
-	// 	if(currentX >= 0 && currentX < aSurface.get_width()
-	// 		&& currentY >= 0 && currentY < aSurface.get_height()) 
-	// 		{
-	// 			aSurface.set_pixel_srgb(currentX, currentY, aColor);
-	// 		}
-
-	// 	currentY += yInc;
-	// 	currentX += xInc;
-	// }
 }
 
 void draw_triangle_wireframe( Surface& aSurface, Vec2f aP0, Vec2f aP1, Vec2f aP2, ColorU8_sRGB aColor )

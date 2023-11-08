@@ -75,14 +75,48 @@ LineStrip make_spaceship_shape()
 		{ 0.2f * xs[0], 0.2f * +ys[5] } // link back to beginning (connects both sides at the "front")
 	} };
 #	elif SPACESHIP == SPACESHIP_CUSTOM
-	static constexpr float xs[] = { 0.f, 50.f, -100.f };
-	static constexpr float ys[] = { 0.f, 50.f, -100.f };
-	LineStrip spaceship{ {
+		float xOffset = 50.f;
+		float yOffset = 40.f;
 
-		{ 0.2f * 500.f, 0.2f * 300.f },
-		{ 0.2f * 550.f, 0.2f * 250.f },
-		{ 0.2f * 550.f, 0.2f * 150.f },
-		{ 0.2f * 500.f, 0.2f * 100.f}
+	LineStrip spaceship{ {
+		
+		// Cockpit (3 points)
+		{ (0.2f * 460.f) - xOffset , (0.2f * 300.f) - yOffset },
+		{ (0.2f * 500.f) - xOffset , (0.2f * 285.f) - yOffset },
+		{ (0.2f * 500.f) - xOffset , (0.2f * 200.f) - yOffset },
+
+		// Bottom wings (12 points)
+		{ (0.2f * 460.f) - xOffset, (0.2f * 185.f) - yOffset },
+		{ (0.2f * 500.f) - xOffset, (0.2f * -185.f) - yOffset },
+		{ (0.2f * 490.f) - xOffset, (0.2f * -185.f) - yOffset },
+		{ (0.2f * 420.f) - xOffset, (0.2f * 185.f) - yOffset },
+		{ (0.2f * 410.f) - xOffset, (0.2f * 185.f) - yOffset },
+		{ (0.2f * 400.f) - xOffset, (0.2f * -185.f) - yOffset },
+		{ (0.2f * 390.f) - xOffset, (0.2f * -185.f) - yOffset },
+		{ (0.2f * 380.f) - xOffset, (0.2f * 185.f) - yOffset },
+		{ (0.2f * 370.f) - xOffset, (0.2f * 185.f) - yOffset },
+		{ (0.2f * 320.f) - xOffset, (0.2f * -185.f) - yOffset },
+		{ (0.2f * 310.f) - xOffset, (0.2f * -185.f) - yOffset },
+		{ (0.2f * 340.f) - xOffset, (0.2f * 185.f) - yOffset },
+
+		// Tail (3 points)
+		{ (0.2f * 0.f) - xOffset, (0.2f * 225.f) - yOffset},
+		{ (0.2f * 0.f) - xOffset, (0.2f * 245.f) - yOffset},
+		{ (0.2f * 340.f) - xOffset, (0.2f * 300.f) - yOffset},
+
+		// Top wings (12 points)
+		{ (0.2f * 340.f) - xOffset, (0.2f * 300.f) - yOffset},
+		{ (0.2f * 310.f) - xOffset, (0.2f * 670.f) - yOffset},
+		{ (0.2f * 320.f) - xOffset, (0.2f * 670.f) - yOffset},
+		{ (0.2f * 370.f) - xOffset, (0.2f * 300.f) - yOffset},
+		{ (0.2f * 380.f) - xOffset, (0.2f * 300.f) - yOffset},
+		{ (0.2f * 390.f) - xOffset, (0.2f * 670.f) - yOffset},
+		{ (0.2f * 400.f) - xOffset, (0.2f * 670.f) - yOffset},
+		{ (0.2f * 410.f) - xOffset, (0.2f * 300.f) - yOffset},
+		{ (0.2f * 420.f) - xOffset, (0.2f * 300.f) - yOffset},
+		{ (0.2f * 490.f) - xOffset, (0.2f * 670.f) - yOffset},
+		{ (0.2f * 500.f) - xOffset, (0.2f * 670.f) - yOffset},
+		{ (0.2f * 460.f) - xOffset, (0.2f * 300.f) - yOffset},
 	
 	} };
 #	endif

@@ -17,12 +17,20 @@
 
 %----------------------------------------------------------------------------------------
 %	PACKAGES AND DOCUMENT CONFIGURATIONS
-%----------------------------------------------------------------------------------------
+%----------------------------------https://texdoc.org/serve/xcharter-doc.pdf/0------------------------------------------------------
 
 \documentclass[
-	letterpaper, % Paper size, specify a4paper (A4) or letterpaper (US letter)
+	a4paper, % Paper size, specify a4paper (A4) or letterpaper (US letter)
 	10pt, % Default font size, specify 10pt, 11pt or 12pt
 ]{CSUniSchoolLabReport}
+
+\usepackage{titling}
+\newcommand{\subtitle}[1]{%
+  \posttitle{%
+    \par\end{center}
+    \begin{center}\large#1\end{center}
+    \vskip0.5em}%
+}
 
 \addbibresource{sample.bib} % Bibliography file (located in the same folder as the template)
 
@@ -30,14 +38,16 @@
 %	REPORT INFORMATION
 %----------------------------------------------------------------------------------------
 
-\title{Computer Graphics Coursework 1 Report} % Report title
 
-\author{Brooklyn Mcswiney} % Author name(s), add additional authors like: '\& James \textsc{Smith}'
-
-\date{ }
 %----------------------------------------------------------------------------------------
 
 \begin{document}
+
+\title{Computer Graphics Coursework 1 Report} % Report title
+\subtitle{COMP3811}
+\author{Brooklyn Mcswiney --- ed20b3m} % Author name(s), add additional authors like: '\& James \textsc{Smith}'
+
+\date{ }
 
 \maketitle % Insert the title, author and date using the information specified above
 
@@ -303,7 +313,23 @@ should be able to handle this.
 \end{flushleft}
 \subsection{Line drawing}
 \subsection*{Bresenham's Algorithm}
-(\cite{Madan:2014})
+\begin{flushleft}
+	Bresenham's line drawing algorithm begins by calculating $dx = x_2 - x_1$ and 
+	$dy = y_2 - y_1$. Following this, the algorithm then finds what is known as the 
+	driving axis($DA$) by comparing $dy$ and $dx$. In the case that $|dx| \geq |dy|$ the x-axis 
+	is the driving axis. On the other hand, should $|dx| < |dy|$ be true the y-axis is the 
+	driving axis. This is where the main differences between Bresenham's algorithm and DDA 
+	begin. Bresenham's only uses the driver to increment the driving axis while iterating 1 by 1
+	over the other axis whereas the DDA algorithm uses a similar value to $DA$ to calculate an 
+	increase to both axes. Bresenham's algorithm then keeps track of when to update the current position 
+	in the driving axis through the use of an error variable. This variable keeps track of the 
+	distance between the line and the current pixel. Should this error value be over 1 the current value 
+	on the driving axis is incremented and the error value is returned to where it should be.
+	(\cite{Madan:2014})
+	Finally, the algorithm checks if the current point to be drawn is within the bounds of the window 
+	and if this test passes the pixel is drawn. This check is achieved in the same way in both 
+	DDA and Bresenham's algorithm.
+\end{flushleft}
 \subsection*{Benchmark analysis}
 \begin{table}[!htb]
     \caption{Line Benchmark Results}
@@ -337,6 +363,30 @@ should be able to handle this.
         \end{tabular}
     \end{minipage} 
 \end{table}
+\begin{flushleft}
+	The three tests that were performed were chosen as they cover a wide range of use 
+	cases. Diagonal and horizontal tests cover the most common uses of line drawing so 
+	it is important to cover these within the benchmarks. The fullscreen test covers the
+	most extreme case of drawing every pixel on the surface. This test is interesting as it 
+	shows the absolute worst case of each algorithm and highlights how the algorithms scale with size.
+\end{flushleft}
+\begin{flushleft}
+	As can be seen from the data Bresenham's algorithm takes almost twice the amount of time 
+	as the DDA algorithm. This may be due to Bresenham's algorithm making more calculations and checks
+	within the main loop of the algorithm whereas the DDA algorithm only increments the current x and y value.
+\end{flushleft}
+\begin{flushleft}
+	You can also infer from the algorithm that both algorithms are particularly slow at drawing every line 
+	on the screen. This could indicate that both algorithms are slow at drawing larger objects (such as triangles)
+	and therefore these algorithms are not ideal for drawing larger shapes. However, should you need a line 
+	drawing algorithm in order to draw a shape (such as drawing a triangle with horizontal lines) I would recommend
+	the DDA algorithm.
+\end{flushleft}
+\begin{flushleft}
+	In conclusion, it is clear that the DDA algorithm is much more effective in terms of time efficiency than
+	Bresenham's algorithm. However, Bresenham's algorithm may still be useful in certain cases as it can be 
+	achieved through integer values whereas DDA requires floating point values.
+\end{flushleft}
 \section{My own spaceship}
 
 \subsection*{}

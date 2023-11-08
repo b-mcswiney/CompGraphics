@@ -1,15 +1,15 @@
 [0] Config.pm:307> INFO - This is Biber 2.17
 [1] Config.pm:310> INFO - Logfile is 'template.blg'
-[168] biber:340> INFO - === Tue Nov  7, 2023, 18:13:34
-[196] Biber.pm:418> INFO - Reading 'template.bcf'
-[328] Biber.pm:972> INFO - Found 2 citekeys in bib section 0
-[358] Biber.pm:4383> INFO - Processing section 0
-[379] Biber.pm:4574> INFO - Looking for bibtex file 'sample.bib' for section 0
-[381] bibtex.pm:1713> INFO - LaTeX decoding ...
-[392] bibtex.pm:1518> INFO - Found BibTeX data source 'sample.bib'
-[485] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[485] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[485] Biber.pm:4203> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
-[485] Biber.pm:4209> INFO - No sort tailoring available for locale 'en-US'
-[490] bbl.pm:654> INFO - Writing 'template.bbl' with encoding 'UTF-8'
-[493] bbl.pm:757> INFO - Output to template.bbl
+[213] biber:340> INFO - === Wed Nov  8, 2023, 09:31:56
+[258] Biber.pm:418> INFO - Reading 'template.bcf'
+[430] Biber.pm:972> INFO - Found 2 citekeys in bib section 0
+[473] Biber.pm:4383> INFO - Processing section 0
+[503] Biber.pm:4574> INFO - Looking for bibtex file 'sample.bib' for section 0
+[505] bibtex.pm:1713> INFO - LaTeX decoding ...
+[526] bibtex.pm:1518> INFO - Found BibTeX data source 'sample.bib'
+[641] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[642] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[642] Biber.pm:4203> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
+[642] Biber.pm:4209> INFO - No sort tailoring available for locale 'en-US'
+[647] bbl.pm:654> INFO - Writing 'template.bbl' with encoding 'UTF-8'
+[651] bbl.pm:757> INFO - Output to template.bbl

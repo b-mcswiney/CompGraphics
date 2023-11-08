@@ -46,6 +46,7 @@
 \usepackage{siunitx} % Provides the \SI{}{} and \si{} commands for typesetting technical/scientific SI units correctly
 
 \usepackage{amsmath} % Required for some math elements 
+\usepackage{titling}
 
 %----------------------------------------------------------------------------------------
 %	MARGINS

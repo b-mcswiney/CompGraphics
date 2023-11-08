@@ -7,8 +7,8 @@
 \contentsline {section}{\numberline {2}Testing}{5}{}%
 \contentsline {subsection}{\numberline {2.1}Testing: Lines}{5}{}%
 \contentsline {subsection}{\numberline {2.2}Testing: Triangles}{6}{}%
-\contentsline {section}{\numberline {3}Benchmarks}{7}{}%
-\contentsline {subsection}{\numberline {3.1}Computer Information}{7}{}%
+\contentsline {section}{\numberline {3}Benchmarks}{6}{}%
+\contentsline {subsection}{\numberline {3.1}Computer Information}{6}{}%
 \contentsline {subsection}{\numberline {3.2}Blitting}{7}{}%
-\contentsline {subsection}{\numberline {3.3}Line drawing}{8}{}%
+\contentsline {subsection}{\numberline {3.3}Line drawing}{7}{}%
 \contentsline {section}{\numberline {4}My own spaceship}{8}{}%

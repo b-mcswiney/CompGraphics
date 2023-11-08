@@ -71,7 +71,7 @@ bottom left corner.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.6]{particleFieldZoom}
+	\includegraphics[scale=1]{particleFieldZoom}
 	\caption{Particle field from the project implementation}
 \end{figure}
 
@@ -80,27 +80,26 @@ bottom left corner.
 	The line implementation works by starting with two points. The start and
 	end of the line. The program will then take these values and calculate 2
 	numbers \(d_x\) and \( d_y\). Then, the program will find which axis the
-	line moves the most along (Known as the X or Y major). This is done through
+	line moves the most along (Known as the X or Y major). This is done by
 	seeing which value between \(d_x\) and \( d_y\) is the greatest. Should \(d_x\)
 	be greater we step along the X axis. The same is true should \(d_y\) be greater.
-	The program then keeps track of this by saving a `step' variable as the corresponding 
+	The program then keeps track of this by saving a `length' variable as the corresponding 
 	major.
 \end{flushleft}
 
 \begin{flushleft}
-	The final step before moving onto deciding which pixels get drawn is to calculate
+	The final step before moving on to deciding which pixels get drawn is to calculate
 	the increase required each iteration in the \(x\) and \(y\) directions.
-	This increase is found by dividing \(d_x\) and \(dy\) by the step variable that was
+	This increase is found by dividing \(d_x\) and \(dy\) by the length variable that was
 	saved earlier. 
 \end{flushleft}
 
 \begin{flushleft}
-	In order to draw the line the program now iterates over as many `steps'
-	needed to draw the line from the start to the end. During each iteration
-	the program will check that the pixel is within the bounds of the surface
-	and should this check return true the pixel will be drawn. This is done to 
-	avoid out of bounds errors within the program. The last stage of the loop is 
-	to move to the next pixel in the line by adding the \(x\) and \(y\) increase 
+	Finally, in order to draw the line the program now iterates over the length if the line.
+	During each iteration, the program will check that the pixel is within the bounds
+	of the surface and should this check return true the pixel will be drawn. 
+	This is done to avoid out-of-bounds errors within the program. The last stage
+	of the loop is to move to the next pixel in the line by adding the \(x\) and \(y\) increase 
 	to our current pixel location. (\cite{Kamble:2021})
 \end{flushleft}
 
@@ -124,10 +123,11 @@ bottom left corner.
 	This algorithm begins by finding the possible bounds of the triangle by 
 	iterating through the points given to find the maximum and minimum coordinates. 
 	Once the bounds of the triangle are discovered the program will iterate 
-	through every pixel within the bounds. Every loop the program will check 
+	through every pixel within the bounds. For every loop, the program will check 
 	if the current pixel (\(X\)) is within the triangle by performing 3 half-plane tests.
-	These tests are performed using the following algorithm \(F(X)=n \cdot (X - P)\).
-	Should \(F(X) > 0\) be true for any of the lines the program continues onto 
+	These tests are performed using the following formula \(F(X)=n \cdot (X - P)\)
+	where $P$ is a point on the line to be tested and $n$ is a vector that is normal to 
+	that line. Should \(F(X) > 0\) be true for any of the lines the program continues onto 
 	the next pixel. Should the pixel pass all the half-plane tests the program will 
 	then check the pixel is within the window and if it is the pixel gets drawn. 
 
@@ -135,7 +135,7 @@ bottom left corner.
 
 \subsection{Barycentric Interpolation}
 \begin{flushleft}
-	The algorithm begins exactly the same as the previous triangle algorithm, by 
+	The algorithm begins the same as the previous triangle algorithm, by 
 	finding the bounds of the triangle to be drawn. The algorithm then loops through
 	this rectangle and performs calculations to determine whether or not a pixel is within
 	the triangle to be drawn. The changes from the previous algorithm begin with these checks.
@@ -175,50 +175,51 @@ bottom left corner.
 \subsection{Blitting Images}
 \subsection*{Helper Algorithims}
 \begin{flushleft}
-	These helper algorithms differ slightly from the ones used in order to set pixels. This is due to the fact that
+	These helper algorithms differ slightly from the ones used to set pixels. This is because
 	they use RGBA representation as opposed to RGBx representations. This means that as well as returning the RGB values
 	when getting a pixel the program must also return an A value. This A value is used to indicate the opacity of a pixel 
-	which is then later used to check whether a pixel should or should not be drawn on the surface from the image.
+	which is then later used to check whether a pixel should or should not be copied on to surface from the image.
 \end{flushleft}
 \subsection*{Main Blitting Algorithm}
 \begin{flushleft}
-	The blitting algorithm begins by starting a loop through the image to be rendered. Within this loop 
+	The blitting algorithm begins by starting a loop through the image to be rendered. Within this loop,
 	the program first finds the current position on the surface by adding the starting position to the x and y
 	values being used to loop through the image. The algorithm then calls the helper algorithm to get a pixel from the image.
-	The program then checks if the current pixel should be masked or not by checking if the A value is greater than 0. The program
+	The program then checks if the current pixel should be masked or not by checking if the A value is greater than 128 and if it is not
+	the pixel does not get drawn. The program
 	then makes sure that the current pixel is within the bounds of the surface and if it is the pixel gets drawn onto the surface.
 \end{flushleft}
 \begin{flushleft}
-	One possible optimisation that could be made is improving the clipping of the image. For example, currently the program will check every 
-	pixel outside the bounds of the surface even if no more pixels could possibly be on the surface. This could be further optimised
+	One possible optimization that could be made is improving the clipping of the image. For example, currently, the program will check every 
+	pixel outside the bounds of the surface even if no more pixels could be on the surface. This could be further optimized
 	by stopping the current loop if the following pixels will always be outside the borders of the surface.
 \end{flushleft}
 \section{Testing}
 \subsection{Testing: Lines}
-\subsection*{Test 1 {-} Drawing multiple directions off screen}
+\subsection*{Test 1 {-} Drawing multiple directions off-screen}
 This test was implemented as it is important that the program can handle lines 
-being drawn off screen no matter the direction. Currently the tests only check for 
-1 direction off screen so I decided to expand on that to all directions. Furthermore, 
-if the program cannot handle lines being drawn off screen the program will most likely
+being drawn off-screen no matter the direction. Currently, the tests only check for 
+1 direction off-screen so I decided to expand on that to all directions. Furthermore, 
+if the program cannot handle lines being drawn off-screen the program will most likely
 crash which is unacceptable.
 
 \subsection*{Test 2 {-} Two connected lines}
-This test was implemented in order to ensure there's no pixel gaps when two lines 
-are drawn next to each other. This is a desireable effect as when drawing more 
+This test was implemented to ensure there are no pixel gaps when two lines 
+are drawn next to each other. This is a desirable effect as when drawing more 
 complex shapes using lines we must ensure the program will not leave any gaps while
 drawing.
 
 
 \subsection*{Test 3 {-} Two lines running parallel next to each other}
 This test was implemented to ensure no gaps are present when lines are parallel to each other.
-This is desireable for the same reason as the previous test. That reason being, 
+This is desirable for the same reason as the previous test. That reason being, 
 when drawing more complex shapes with lines we want to ensure no gaps are present.
 \subsection*{Test 4 {-} Two lines overlapping}
 This test was implemented to ensure that a second line drawn after another line in The
 same place would overwrite the previous line. This feature is important as some animations
  will require changes in pixels so it is important pixels drawn later can fully overwrite
  previous pixels.
-\subsection*{Test 5 {-} Whole screen drawn onto}
+\subsection*{Test 5 {-} Whole screen draw}
 This test ensures that every pixel within a surface can be drawn onto. This is important
 as we want to make sure that every pixel can be used. This also ensures that any bug 
 related to drawing to specific pixels can be identified and fixed.
@@ -255,13 +256,13 @@ related to drawing to specific pixels can be identified and fixed.
 \end{figure}
 \subsection{Testing: Triangles}
 \subsection*{Test 1 {-} Flat triangle}
-For this test we want to ensure that drawing a flat triangle just draws a line on the surface.
-This could be useful for certain animations that involve a triangle morphing in order to be flatter. 
+For this test, we want to ensure that drawing a flat triangle just draws a line on the surface.
+This could be useful for certain animations that involve a triangle morphing to be flatter. 
 This test ensures that the triangle does not disappear early during this animation.
 \subsection*{Test 2 {-} Any point order}
 This test ensures that no matter what order the points are inputted the triangle is still drawn.
 This is useful as due to rotation there is no way to know what order the points of the triangle will 
-arrive in. Therefore this test exists to ensures the drawing algorithm accounts for this.
+arrive in. Therefore this test exists to ensure the drawing algorithm accounts for this.
 \subsection*{Test 3 {-} Triangles drawn outside}
 This test ensures the program does not crash when an entire triangle is drawn outside the bounds of 
 the screen. This is useful as for certain things (such as objects in a video game for example) a user 
@@ -293,10 +294,10 @@ should be able to handle this.
 	\end{tabular}
 \end{table}
 \begin{flushleft}
-	From this data I can see that the fastest algorithm in terms of time taken is 
+	From this data, I can see that the fastest algorithm in terms of time taken is 
 	clearly blitting through the use of \verb|std::memcpy|. This is most likely due
 	to the algorithm involving \verb|std::memcpy| only containing one \verb|for| loop.
-	This algorithm achieves this through directly copying every row of the image onto
+	This algorithm achieves this by directly copying every row of the image onto
 	the surface from a specified point. Another benefit of this algorithm that can be seen from 
 	the data is that it scales well with larger images. This effect is also due to the algorithm
 	only having one \verb|for| loop as opposed to two.
@@ -304,7 +305,7 @@ should be able to handle this.
 \begin{flushleft}
 	This data also seems to indicate that blitting with alpha masking is faster than
 	blitting with alpha masking. The most likely reason for this is due to my implementation 
-	of clipping. Clipping is performed by checking is a pixel is in bounds right before it
+	of clipping. Clipping is performed by checking if a pixel is in bounds right before it
 	is about to be drawn. When alpha masking is performed this (relatively expensive) check 
 	is skipped for every pixel that is to be masked. On the other hand, if alpha masking is not 
 	performed this check is done for every pixel in the bounds of the image. Should this clipping 
@@ -379,7 +380,7 @@ should be able to handle this.
 	You can also infer from the algorithm that both algorithms are particularly slow at drawing every line 
 	on the screen. This could indicate that both algorithms are slow at drawing larger objects (such as triangles)
 	and therefore these algorithms are not ideal for drawing larger shapes. However, should you need a line 
-	drawing algorithm in order to draw a shape (such as drawing a triangle with horizontal lines) I would recommend
+	drawing algorithm to draw a shape (such as drawing a triangle with horizontal lines) I would recommend
 	the DDA algorithm.
 \end{flushleft}
 \begin{flushleft}
@@ -391,7 +392,7 @@ should be able to handle this.
 \section{My own spaceship}
 \begin{flushleft}
 	My spaceship design is based on a dragonfly. I attempted to push this design as 
-	far as I could within the limit as it uses 30 points in order to map.
+	far as I could within the limit as it uses 30 points to map onto the surface.
 \end{flushleft}
 \begin{figure}[h]
 	\centering

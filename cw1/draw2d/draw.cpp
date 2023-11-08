@@ -71,6 +71,7 @@ float half_line_test(Vec2f Q, Vec2f P, Vec2f X)
 
 void draw_triangle_solid( Surface& aSurface, Vec2f aP0, Vec2f aP1, Vec2f aP2, ColorU8_sRGB aColor )
 {
+	// Set default max/min points for comparison
 	float maxX = aP0.x;
 	float maxY = aP0.x;
 	float minX = aP0.x;

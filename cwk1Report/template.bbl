@@ -19,6 +19,33 @@
 
 \refsection{0}
   \datalist[entry]{nyt/global//global/global}
+    \entry{Badshah:2023}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=962c1cce85bccdd041d1b8d75c2dff55}{%
+           family={Badshah},
+           familyi={B\bibinitperiod},
+           given={Nadeem},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{962c1cce85bccdd041d1b8d75c2dff55}
+      \strng{fullhash}{962c1cce85bccdd041d1b8d75c2dff55}
+      \strng{bibnamehash}{962c1cce85bccdd041d1b8d75c2dff55}
+      \strng{authorbibnamehash}{962c1cce85bccdd041d1b8d75c2dff55}
+      \strng{authornamehash}{962c1cce85bccdd041d1b8d75c2dff55}
+      \strng{authorfullhash}{962c1cce85bccdd041d1b8d75c2dff55}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Guardian}
+      \field{number}{3}
+      \field{title}{Train fares in England and Wales rise by 5.9% despite poor service}
+      \field{volume}{4}
+      \field{year}{2023}
+    \endentry
     \entry{Kamble:2021}{article}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=84684b97bc5c511495c18e8946fdf19a}{%

@@ -130,8 +130,8 @@ int main() try
 	// TODO: global GL setup goes here
 	glEnable( GL_FRAMEBUFFER_SRGB );
 	glEnable( GL_CULL_FACE );
-	glClearColor( 0.2f, 0.2f, 0.2f, 1.0f);
-	glClear( GL_COLOR_BUFFER_BIT );
+	glClearColor( 0.2f, 0.2f, 0.2f, 0.0f );
+	// glClear( GL_COLOR_BUFFER_BIT );
 
 
 	OGL_CHECKPOINT_ALWAYS();
@@ -155,6 +155,66 @@ int main() try
 
 	// Create vertex buffers and VAO
 	//TODO: create VBOs and VAO
+
+	// Hardcoding positions of triangle vertices
+	static float const kPositions[] = {
+		 0.f,   0.8f,
+		-0.7f, -0.8f,
+		+0.7f, -0.8f
+	};
+
+	// Defining VBO for positions
+	GLuint positionVBO = 0;
+	glGenBuffers( 1, &positionVBO );
+	glBindBuffer( GL_ARRAY_BUFFER, positionVBO );
+	glBufferData( GL_ARRAY_BUFFER, sizeof(kPositions), kPositions, GL_STATIC_DRAW);
+
+	// Colours for each vertex
+	static float const kColors[] = {
+		1.f, 1.f, 0.f, // vertex 0 color 
+		1.f, 0.f, 1.f, // vertex 1 color
+		0.f, 1.f, 1.f // vertex 2 color
+	};
+
+	// Defining VBO for colours
+	GLuint colorsVBO = 0;
+	glGenBuffers( 1, &colorsVBO );
+	glBindBuffer( GL_ARRAY_BUFFER, colorsVBO );
+	glBufferData( GL_ARRAY_BUFFER, sizeof(kColors), kColors, GL_STATIC_DRAW);
+
+
+	// Defining VAO for triangles
+	// VAOs define attributes for verticies
+	// Here we will give each vertex in the triangle their position and color attributes
+	
+	// Creating VAO
+	GLuint vao = 0;
+	glGenVertexArrays( 1, &vao );
+	glBindVertexArray( vao );
+
+	glBindBuffer( GL_ARRAY_BUFFER, positionVBO );
+	glVertexAttribPointer(
+		0, // location 0 = in vertex shader
+		2, GL_FLOAT, GL_FALSE, // 2 floats not normilized to [0..1]
+		0, // stride = 0 indicates no padding between inputs
+		0 // data starts at offset 0 in VBO
+	);
+	glEnableVertexAttribArray( 0 ); // Position in arribute array
+
+	
+	glBindBuffer( GL_ARRAY_BUFFER, colorsVBO );
+	glVertexAttribPointer(
+		0, // location 0 = in vertex shader
+		3, GL_FLOAT, GL_FALSE, // 3 floats not normilized to [0..1]
+		0, // stride = 0 indicates no padding between inputs
+		0 // data starts at offset 0 in VBO
+	);
+	glEnableVertexAttribArray( 1 ); // Position in arribute array
+
+	// Reset state
+	glBindVertexArray( 0 );
+	glBindBuffer( GL_ARRAY_BUFFER, 0);
+
 
 	// Animation state
 	auto last = Clock::now();

@@ -131,8 +131,6 @@ int main() try
 	glEnable( GL_FRAMEBUFFER_SRGB );
 	glEnable( GL_CULL_FACE );
 	glClearColor( 0.2f, 0.2f, 0.2f, 0.0f );
-	// glClear( GL_COLOR_BUFFER_BIT );
-
 
 	OGL_CHECKPOINT_ALWAYS();
 
@@ -155,66 +153,64 @@ int main() try
 
 	// Create vertex buffers and VAO
 	//TODO: create VBOs and VAO
-
-	// Hardcoding positions of triangle vertices
 	static float const kPositions[] = {
-		 0.f,   0.8f,
-		-0.7f, -0.8f,
-		+0.7f, -0.8f
-	};
-
-	// Defining VBO for positions
+		  0.f, 0.8f,	// vertex 0 position
+		  -0.7f, -0.8f, // vertex 1 position
+		  +0.7f, -0.8f  // vertex 2 position
+		};
+	
 	GLuint positionVBO = 0;
 	glGenBuffers( 1, &positionVBO );
 	glBindBuffer( GL_ARRAY_BUFFER, positionVBO );
-	glBufferData( GL_ARRAY_BUFFER, sizeof(kPositions), kPositions, GL_STATIC_DRAW);
+	glBufferData( GL_ARRAY_BUFFER, sizeof(kPositions), kPositions, GL_STATIC_DRAW );
+	// Note: we can use sizeof(kPositions) because kPositions is defined as a
+	// C/C++ array. Never use sizeof() on pointers or on classes such as
+	// std::vector!
 
-	// Colours for each vertex
 	static float const kColors[] = {
-		1.f, 1.f, 0.f, // vertex 0 color 
+		1.f, 1.f, 0.f, // vertex 0 color
 		1.f, 0.f, 1.f, // vertex 1 color
-		0.f, 1.f, 1.f // vertex 2 color
+		0.f, 1.f, 1.f  // vertex 2 color
 	};
 
-	// Defining VBO for colours
-	GLuint colorsVBO = 0;
-	glGenBuffers( 1, &colorsVBO );
-	glBindBuffer( GL_ARRAY_BUFFER, colorsVBO );
-	glBufferData( GL_ARRAY_BUFFER, sizeof(kColors), kColors, GL_STATIC_DRAW);
 
+	GLuint colorVBO = 0;
+	glGenBuffers( 1, &colorVBO );
+	glBindBuffer( GL_ARRAY_BUFFER, colorVBO );
+	glBufferData( GL_ARRAY_BUFFER, sizeof(kColors), kColors, GL_STATIC_DRAW );
 
-	// Defining VAO for triangles
-	// VAOs define attributes for verticies
-	// Here we will give each vertex in the triangle their position and color attributes
-	
-	// Creating VAO
 	GLuint vao = 0;
 	glGenVertexArrays( 1, &vao );
 	glBindVertexArray( vao );
-
 	glBindBuffer( GL_ARRAY_BUFFER, positionVBO );
-	glVertexAttribPointer(
-		0, // location 0 = in vertex shader
-		2, GL_FLOAT, GL_FALSE, // 2 floats not normilized to [0..1]
-		0, // stride = 0 indicates no padding between inputs
-		0 // data starts at offset 0 in VBO
-	);
-	glEnableVertexAttribArray( 0 ); // Position in arribute array
 
+	glVertexAttribPointer(
+		0, // location = 0 in vertex shader
+		2, GL_FLOAT, GL_FALSE, // 2 floats, not normalized to [0..1] (GL FALSE)
+		0, // stride = 0 indicates that there is no padding between inputs
+		0 // data starts at offset 0 in the VBO.
+	);
+
+	glEnableVertexAttribArray( 0 );
+	glBindBuffer( GL_ARRAY_BUFFER, colorVBO );
+
+	glVertexAttribPointer(
+		1, // location = 1 in vertex shader
+		3, GL_FLOAT, GL_FALSE, // 3 floats, not normalized to [0..1] (GL FALSE)
+		0, // see above
+		0  // see above
+	);
+
+	glEnableVertexAttribArray( 1 );
 	
-	glBindBuffer( GL_ARRAY_BUFFER, colorsVBO );
-	glVertexAttribPointer(
-		0, // location 0 = in vertex shader
-		3, GL_FLOAT, GL_FALSE, // 3 floats not normilized to [0..1]
-		0, // stride = 0 indicates no padding between inputs
-		0 // data starts at offset 0 in VBO
-	);
-	glEnableVertexAttribArray( 1 ); // Position in arribute array
-
 	// Reset state
 	glBindVertexArray( 0 );
-	glBindBuffer( GL_ARRAY_BUFFER, 0);
+	glBindBuffer( GL_ARRAY_BUFFER, 0 );
 
+	// Clean up buffers
+	// Note: these are not deleted fully, as the VAO holds a reference to them.
+	glDeleteBuffers( 1, &colorVBO );
+	glDeleteBuffers( 1, &positionVBO );
 
 	// Animation state
 	auto last = Clock::now();
@@ -261,6 +257,25 @@ int main() try
 		OGL_CHECKPOINT_DEBUG();
 
 		//TODO: draw frame
+		// Clear color buffer to specified clear color (glClearColor())
+		glClear( GL_COLOR_BUFFER_BIT );
+
+		// We want to draw with our program..
+		glUseProgram( prog.programId() );
+
+		// Specify the base color (uBaseColor in location 0 in the fragment shader)
+		static float const baseColor[] = { 0.2f, 1.f, 1.f };
+		glUniform3fv( 0, 1, baseColor );
+
+		// Source input as defined in our VAO
+		glBindVertexArray( vao );
+
+		// Draw a single triangle (= 3 vertices), starting at index 
+		glDrawArrays( GL_TRIANGLES, 0, 3 );
+
+		// Reset state
+		glBindVertexArray( 0 );
+		glUseProgram( 0 );
 
 		OGL_CHECKPOINT_DEBUG();
 

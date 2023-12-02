@@ -8,8 +8,7 @@ in vec3 v2fColor;
 // For now, we use the “register style” uniforms. Similar to the vertex shader inputs, the
 // layout( location = N )
 // syntax allows us to specify uniform locations in the shader (which avoids the need to query them later,
-// via glGetUniformLocation()). Again, see
-// https://www.khronos.org/opengl/wiki/Layout Qualifier (GLSL)
+// via glGetUniformLocation()). Again, see6G// https://www.khronos.org/opengl/wiki/Layout Qualifier (GLSL)
 // for more information
 //
 // Warning: This feature was added in OpenGL 4.3 / GLSL 430! (Apple: check if Apple supports the

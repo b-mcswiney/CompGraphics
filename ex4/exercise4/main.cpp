@@ -218,6 +218,10 @@ int main() try
 	GLuint vao = create_vao( xyzarrows );
 	std::size_t vertexCount = xyzarrows.positions.size();
 
+	auto armadillo = load_wavefront_obj("assets/Armadillo.obj");
+	GLuint armadilloVAO = create_vao( armadillo );
+	std::size_t armadilloVertexCount = armadillo.positions.size();
+
 	// auto testCone = make_cone( true, 16, {1.f, 0.f, 0.f} );
 	// GLuint vao = create_vao( testCone );
 	// std::size_t vertexCount = testCone.positions.size();
@@ -285,7 +289,7 @@ int main() try
 			1.f, 1000.0f
 		);
 
-		Mat44f projCameraWorld = projection * world2camera;
+		Mat44f projCameraWorld = projection * world2camera * model2world;
 
 		// Clear color buffer to specified clear color (glClearColor())
 		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
@@ -309,6 +313,9 @@ int main() try
 		glPolygonMode( GL_FRONT_AND_BACK, GL_LINE);
 		// Draw all sides to cube starting at index 
 		glDrawArrays( GL_TRIANGLES, 0, vertexCount );
+
+		glBindVertexArray( armadilloVAO );
+		glDrawArrays( GL_TRIANGLES, 0, armadilloVertexCount );
 
 		// Reset state
 		glBindVertexArray( 0 );

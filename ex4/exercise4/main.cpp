@@ -145,7 +145,7 @@ int main() try
 
 	// TODO: global GL setup goes here
 	glEnable( GL_FRAMEBUFFER_SRGB );
-	glEnable( GL_CULL_FACE );
+	// glEnable( GL_CULL_FACE );
 	glEnable( GL_DEPTH_TEST );
 	glClearColor( 0.2f, 0.2f, 0.2f, 0.0f );
 
@@ -175,49 +175,53 @@ int main() try
 	float angle = 0.f;
 
 	// Create vertex buffers and VAO
-	//TODO: create VBOs and VAO
-	GLuint positionVBO = 0;
-	glGenBuffers( 1, &positionVBO );
-	glBindBuffer( GL_ARRAY_BUFFER, positionVBO );
-	glBufferData( GL_ARRAY_BUFFER, sizeof(kCubePositions), kCubePositions, GL_STATIC_DRAW );
+	// TODO: create VBOs and VAO
+	// auto testCylinder = make_cylinder( true, 16, {1.f, 0.f, 0.f},
+	// 	make_rotation_z( 3.141592f / 2.f ) * 
+	// 	make_scaling( 5.f, 0.1f, 0.1f )
+	// );
 
-	GLuint colorVBO = 0;
-	glGenBuffers( 1, &colorVBO );
-	glBindBuffer( GL_ARRAY_BUFFER, colorVBO );
-	glBufferData( GL_ARRAY_BUFFER, sizeof(kCubeColors), kCubeColors, GL_STATIC_DRAW );
-
-	GLuint vao = 0;
-	glGenVertexArrays( 1, &vao );
-	glBindVertexArray( vao );
-	glBindBuffer( GL_ARRAY_BUFFER, positionVBO );
-
-	glVertexAttribPointer(
-		0, // location = 0 in vertex shader
-		3, GL_FLOAT, GL_FALSE, // 3 floats, not normalized to [0..1] (GL FALSE)
-		0, // stride = 0 indicates that there is no padding between inputs
-		0 // data starts at offset 0 in the VBO.
+	auto xcy1 = make_cylinder( true, 16, {1.f, 0.f, 0.f},
+		make_scaling(5.f, 0.1f, 0.1f)
 	);
-
-	glEnableVertexAttribArray( 0 );
-	glBindBuffer( GL_ARRAY_BUFFER, colorVBO );
-
-	glVertexAttribPointer(
-		1, // location = 1 in vertex shader
-		3, GL_FLOAT, GL_FALSE, // 3 floats, not normalized to [0..1] (GL FALSE)
-		0, // see above
-		0  // see above
+	auto xcone = make_cone( true, 16, {0.f, 0.f, 0.f},
+		make_scaling( 1.f, 0.3f, 0.3f ) * make_translation( {5.f, 0.f, 0.f } )
 	);
+	auto xarrow = concatenate( std::move(xcy1), xcone);
 
-	glEnableVertexAttribArray( 1 );
-	
-	// Reset state
-	glBindVertexArray( 0 );
-	glBindBuffer( GL_ARRAY_BUFFER, 0 );
 
-	// Clean up buffers
-	// Note: these are not deleted fully, as the VAO holds a reference to them.
-	glDeleteBuffers( 1, &colorVBO );
-	glDeleteBuffers( 1, &positionVBO );
+	auto yarrow = xarrow;
+
+	for  ( auto& p : yarrow.positions )
+	{
+		Vec4f p4{ p.x, p.y, p.z, 1.f };
+		Vec4f t = make_rotation_y( 3.1415026f / 2.f ) * p4;
+		t /= t.w;
+
+		p = Vec3f{ t.x, t.y, t.z };
+	}
+
+	auto zarrow = xarrow;
+
+	for  ( auto& p : zarrow.positions )
+	{
+		Vec4f p4{ p.x, p.y, p.z, 1.f };
+		Vec4f t = make_rotation_z( 3.1415026f / 2.f ) * p4;
+		t /= t.w;
+
+		p = Vec3f{ t.x, t.y, t.z };
+	}
+
+	auto xyarrows = concatenate( xarrow, yarrow);
+	auto xyzarrows = concatenate( xyarrows, zarrow);
+
+	GLuint vao = create_vao( xyzarrows );
+	std::size_t vertexCount = xyzarrows.positions.size();
+
+	// auto testCone = make_cone( true, 16, {1.f, 0.f, 0.f} );
+	// GLuint vao = create_vao( testCone );
+	// std::size_t vertexCount = testCone.positions.size();
+
 	// Main loop
 	while( !glfwWindowShouldClose( window ) )
 	{
@@ -273,12 +277,12 @@ int main() try
 		Mat44f Ry = make_rotation_y( state.camControl.phi );
 		Mat44f T = make_translation( { 0.f, 0.f, -state.camControl.radius } );
 
-		Mat44f world2camera = T * Ry * Rx;
+		Mat44f world2camera = T * Rx * Ry;
 
 		Mat44f projection = make_perspective_projection(
 			60.f * 3.1415926f / 180.f, // Yes, a proper π would be useful. ( C++20: mathematical constants)
 			fbwidth/float(fbheight),
-			0.1f, 100.0f
+			1.f, 1000.0f
 		);
 
 		Mat44f projCameraWorld = projection * world2camera;
@@ -301,8 +305,10 @@ int main() try
 		// Source input as defined in our VAO
 		glBindVertexArray( vao );
 
+		// Draw in wireframe mode
+		glPolygonMode( GL_FRONT_AND_BACK, GL_LINE);
 		// Draw all sides to cube starting at index 
-		glDrawArrays( GL_TRIANGLES, 0, 6*2*3 );
+		glDrawArrays( GL_TRIANGLES, 0, vertexCount );
 
 		// Reset state
 		glBindVertexArray( 0 );

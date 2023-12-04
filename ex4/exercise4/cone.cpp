@@ -24,8 +24,8 @@ SimpleMeshData make_cone( bool aCapped, std::size_t aSubdivs, Vec3f aColor, Mat4
 		pos.emplace_back( Vec3f{ 0.f, y, z } );		
 
 		if(aCapped) {
-			pos.emplace_back( Vec3f{ 0.f, 0.f, 0.f } );
 			pos.emplace_back( Vec3f{ 0.f, prevY, prevZ } );	
+			pos.emplace_back( Vec3f{ 0.f, 0.f, 0.f } );
 			pos.emplace_back( Vec3f{ 0.f, y, z } );		
 		}
 

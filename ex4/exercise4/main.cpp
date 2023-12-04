@@ -145,7 +145,7 @@ int main() try
 
 	// TODO: global GL setup goes here
 	glEnable( GL_FRAMEBUFFER_SRGB );
-	// glEnable( GL_CULL_FACE );
+	glEnable( GL_CULL_FACE );
 	glEnable( GL_DEPTH_TEST );
 	glClearColor( 0.2f, 0.2f, 0.2f, 0.0f );
 

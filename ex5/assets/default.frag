@@ -3,6 +3,7 @@
 // Input attributes
 // These should match the outputs from the vertex shader.
 in vec3 v2fColor;
+in vec3 v2fNormal;
 
 // Uniform data
 // For now, we use the “register style” uniforms. Similar to the vertex shader inputs, the
@@ -23,5 +24,6 @@ layout( location = 0 ) out vec3 oColor;
 
 void main()
 {
-    oColor = v2fColor;
+    vec3 normal = normalize(v2fNormal);
+    oColor = normal;
 }

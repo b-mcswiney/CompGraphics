@@ -5,6 +5,7 @@
 SimpleMeshData make_cylinder( bool aCapped, std::size_t aSubdivs, Vec3f aColor, Mat44f aPreTransform )
 {
 	std::vector<Vec3f> pos;
+	std::vector<Vec3f> norm;
 
 	float prevY = std::cos( 0.f );
 	float prevZ = std::sin( 0.f );
@@ -25,18 +26,30 @@ SimpleMeshData make_cylinder( bool aCapped, std::size_t aSubdivs, Vec3f aColor, 
 		pos.emplace_back( Vec3f{ 0.f, y, z } );
 		pos.emplace_back( Vec3f{ 1.f, prevY, prevZ } );
 
+
+		norm.emplace_back( Vec3f{ 1.f, prevY, prevZ } );
+		norm.emplace_back( Vec3f{ 1.f, y, z } );
+
 		pos.emplace_back( Vec3f{ 0.f, y, z } );
 		pos.emplace_back( Vec3f{ 1.f, y, z } );
 		pos.emplace_back( Vec3f{ 1.f, prevY, prevZ } );
+
+
+		norm.emplace_back( Vec3f{ 0.f, prevY, prevZ } );
+		norm.emplace_back( Vec3f{ 0.f, y, z } );
 
 		if(aCapped) {
 			pos.emplace_back( Vec3f{ 1.f, 0.f, 0.f } );
 			pos.emplace_back( Vec3f{ 1.f, prevY, prevZ } );	
 			pos.emplace_back( Vec3f{ 1.f, y, z } );
+			norm.emplace_back( Vec3f{ 1.f, 0.f, 0.f } );
+			norm.emplace_back( Vec3f{ 2.f, 0.f, 0.f } );
 
 			pos.emplace_back( Vec3f{ 0.f, prevY, prevZ } );	
 			pos.emplace_back( Vec3f{ 0.f, 0.f, 0.f } );
-			pos.emplace_back( Vec3f{ 0.f, y, z } );			
+			pos.emplace_back( Vec3f{ 0.f, y, z } );		
+			norm.emplace_back( Vec3f{ -1, 0, 0 } );	
+			norm.emplace_back( Vec3f{ -2, 0, 0 } );
 		}
 
 		prevY = y;
@@ -52,8 +65,15 @@ SimpleMeshData make_cylinder( bool aCapped, std::size_t aSubdivs, Vec3f aColor, 
 		p = Vec3f{ t.x, t.y, t.z };
 	}
 
+	Mat33f const N = mat44_to_mat33( transpose(invert(aPreTransform)) );
+
+	for ( auto& n : norm )
+	{
+		n = N * n;
+	}
+
 	std::vector col( pos.size(), aColor );
 
-	return SimpleMeshData{ std::move(pos), std::move(col) };
+	return SimpleMeshData{ std::move(pos), std::move(col) , std::move(norm)};
 
 }

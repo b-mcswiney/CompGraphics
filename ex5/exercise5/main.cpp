@@ -175,7 +175,10 @@ int main() try
 
 	// Create vertex buffers and VAO
 	//TODO: create VBOs and VAO
-	auto testCylinder = make_cylinder( true, 16, {1.f, 0.f, 0.f});
+	auto testCylinder = make_cylinder( true, 128, {0.4f, 0.4f, 0.4f},
+		make_rotation_z( 3.141592f / 2.f )
+		* make_scaling( 8.f, 2.f, 2.f )
+	);
 
 	GLuint vao = create_vao( testCylinder );
 	std::size_t vertexCount = testCylinder.positions.size();
@@ -244,6 +247,7 @@ int main() try
 		);
 
 		Mat44f projCameraWorld = projection * world2camera * model2world;
+		Mat33f normalMatrix = mat44_to_mat33( transpose(invert(model2world)) );
 
 		// Clear color buffer to specified clear color (glClearColor())
 		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
@@ -256,15 +260,20 @@ int main() try
 			1, GL_TRUE, projCameraWorld.v
 		);
 
+		glUniformMatrix3fv(
+			1,
+			1, GL_TRUE, normalMatrix.v
+		);
+
 		// Specify the base color (uBaseColor in location 0 in the fragment shader)
 		static float const baseColor[] = { 0.2f, 1.f, 1.f };
 		glUniform3fv( 0, 1, baseColor );
 
-		// Source input as defined in our VAO
+		//w Source input as defined in our VAO
 		glBindVertexArray( vao );
 
 		// Draw in wireframe mode
-		glPolygonMode( GL_FRONT_AND_BACK, GL_LINE);
+		// glPolygonMode( GL_FRONT_AND_BACK, GL_LINE);
 		// Draw all sides to cube starting at index 
 		glDrawArrays( GL_TRIANGLES, 0, vertexCount );
 

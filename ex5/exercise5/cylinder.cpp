@@ -23,33 +23,33 @@ SimpleMeshData make_cylinder( bool aCapped, std::size_t aSubdivs, Vec3f aColor, 
 
 		// Two triangles (= 3*2 positions) create one segment of the cylinder's shell
 		pos.emplace_back( Vec3f{ 0.f, prevY, prevZ } );
+		norm.emplace_back( Vec3f{ 0.f, y, z } );
 		pos.emplace_back( Vec3f{ 0.f, y, z } );
+		norm.emplace_back( Vec3f{ 0.f, y, z } );
 		pos.emplace_back( Vec3f{ 1.f, prevY, prevZ } );
-
-
-		norm.emplace_back( Vec3f{ 1.f, prevY, prevZ } );
-		norm.emplace_back( Vec3f{ 1.f, y, z } );
+		norm.emplace_back( Vec3f{ 0.f, y, z } );
 
 		pos.emplace_back( Vec3f{ 0.f, y, z } );
+		norm.emplace_back( Vec3f{ 0.f, y, z } );
 		pos.emplace_back( Vec3f{ 1.f, y, z } );
+		norm.emplace_back( Vec3f{ 0.f, y, z } );
 		pos.emplace_back( Vec3f{ 1.f, prevY, prevZ } );
-
-
-		norm.emplace_back( Vec3f{ 0.f, prevY, prevZ } );
 		norm.emplace_back( Vec3f{ 0.f, y, z } );
 
 		if(aCapped) {
 			pos.emplace_back( Vec3f{ 1.f, 0.f, 0.f } );
-			pos.emplace_back( Vec3f{ 1.f, prevY, prevZ } );	
+			norm.emplace_back( Vec3f{ 1.f, 0.f, 0.f } );
+			pos.emplace_back( Vec3f{ 1.f, prevY, prevZ } );
+			norm.emplace_back( Vec3f{ 1.f, 0.f, 0.f } );
 			pos.emplace_back( Vec3f{ 1.f, y, z } );
 			norm.emplace_back( Vec3f{ 1.f, 0.f, 0.f } );
-			norm.emplace_back( Vec3f{ 2.f, 0.f, 0.f } );
 
 			pos.emplace_back( Vec3f{ 0.f, prevY, prevZ } );	
+			norm.emplace_back( Vec3f{ -1, 0, 0 } );
 			pos.emplace_back( Vec3f{ 0.f, 0.f, 0.f } );
-			pos.emplace_back( Vec3f{ 0.f, y, z } );		
-			norm.emplace_back( Vec3f{ -1, 0, 0 } );	
-			norm.emplace_back( Vec3f{ -2, 0, 0 } );
+			norm.emplace_back( Vec3f{ -1, 0, 0 } );
+			pos.emplace_back( Vec3f{ 0.f, y, z } );
+			norm.emplace_back( Vec3f{ -1, 0, 0 } );
 		}
 
 		prevY = y;

@@ -233,7 +233,7 @@ int main() try
 
 		// Update: compute matrices
 		//TODO: define and compute projCameraWorld matrix
-		Mat44f model2world = make_rotation_y(angle);
+		Mat44f model2world = make_translation({0.f, 0.f, 3.f}) * make_rotation_y(angle);
 		Mat44f Rx = make_rotation_x( state.camControl.theta );
 		Mat44f Ry = make_rotation_y( state.camControl.phi );
 		Mat44f T = make_translation( { 0.f, 0.f, -state.camControl.radius } );

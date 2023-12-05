@@ -16,6 +16,10 @@ in vec3 v2fNormal;
 // GL ARB explicit uniform location extension, which provides the same functionality.)
 layout( location = 0 ) uniform vec3 uBaseColor;
 
+layout(location = 2) uniform vec3 uLightDir; //should be normalized
+layout(location = 4) uniform vec3 uLightDiffuse;
+layout(location = 5) uniform vec3 uSceneAmbient;
+
 // Fragment shader outputs
 // For now, we have a single output, a RGB (=vec3) color. This is written to the color attachment with
 // index 0 (the location value below). For the moment, we are drawing the default framebuffer, which has
@@ -25,5 +29,8 @@ layout( location = 0 ) out vec3 oColor;
 void main()
 {
     vec3 normal = normalize(v2fNormal);
-    oColor = normal;
+
+    float nDotL = max( 0.0, dot( normal, uLightDir ) );
+
+    oColor = (uSceneAmbient + nDotL * uLightDiffuse) * v2fColor;
 }

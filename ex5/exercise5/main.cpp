@@ -7,6 +7,8 @@
 #include <cstdio>
 #include <cstdlib>
 
+#include <random>
+
 #include "../support/error.hpp"
 #include "../support/program.hpp"
 #include "../support/checkpoint.hpp"
@@ -175,13 +177,17 @@ int main() try
 
 	// Create vertex buffers and VAO
 	//TODO: create VBOs and VAO
-	auto testCylinder = make_cylinder( true, 128, {0.4f, 0.4f, 0.4f},
-		make_rotation_z( 3.141592f / 2.f )
-		* make_scaling( 8.f, 2.f, 2.f )
-	);
+	// auto testCylinder = make_cylinder( true, 128, {0.4f, 0.4f, 0.4f},
+	// 	make_rotation_z( 3.141592f / 2.f )
+	// 	* make_scaling( 8.f, 2.f, 2.f )
+	// );
 
-	GLuint vao = create_vao( testCylinder );
-	std::size_t vertexCount = testCylinder.positions.size();
+	// GLuint vao = create_vao( testCylinder );
+	// std::size_t vertexCount = testCylinder.positions.size();
+	
+	auto armadillo = load_simple_binary_mesh("assets/Armadillo.comp3811bin");
+	GLuint vao = create_vao( armadillo );
+	std::size_t vertexCount = armadillo.positions.size();
 
 	// Main loop
 	while( !glfwWindowShouldClose( window ) )
@@ -233,7 +239,7 @@ int main() try
 
 		// Update: compute matrices
 		//TODO: define and compute projCameraWorld matrix
-		Mat44f model2world = make_translation({0.f, 0.f, 3.f}) * make_rotation_y(angle);
+		Mat44f model2world = make_translation({0.f, -5.f, 0.f}) * make_rotation_y(angle);
 		Mat44f Rx = make_rotation_x( state.camControl.theta );
 		Mat44f Ry = make_rotation_y( state.camControl.phi );
 		Mat44f T = make_translation( { 0.f, 0.f, -state.camControl.radius } );
@@ -265,22 +271,85 @@ int main() try
 			1, GL_TRUE, normalMatrix.v
 		);
 
+		Vec3f lightDir = normalize( Vec3f{ -1.f, 1.f, 0.5f } );
+		glUniform3fv( 2, 1, &lightDir.x );
+
+		// std::random_device rd;  
+   		// std::mt19937 gen(rd()); 
+    	// std::uniform_real_distribution<float> dis(0.0, 1.0);
+
+		glUniform3f( 4, 0.9f, 0.9f, 0.6f );
+		glUniform3f( 5, 0.05f, 0.05f, 0.05f );
+		// glUniform3f( 5, dis(gen), dis(gen), dis(gen) );
+
 		// Specify the base color (uBaseColor in location 0 in the fragment shader)
 		static float const baseColor[] = { 0.2f, 1.f, 1.f };
 		glUniform3fv( 0, 1, baseColor );
 
 		//w Source input as defined in our VAO
 		glBindVertexArray( vao );
-
+	
 		// Draw in wireframe mode
 		// glPolygonMode( GL_FRONT_AND_BACK, GL_LINE);
 		// Draw all sides to cube starting at index 
 		glDrawArrays( GL_TRIANGLES, 0, vertexCount );
 
+		model2world = make_translation({0.f, 0.f, 0.f}) * make_rotation_y(angle);
+		projCameraWorld = projection * world2camera * model2world;
+
+		glUniformMatrix4fv(
+			3,
+			1, GL_TRUE, projCameraWorld.v
+		);
+		
+		glDrawArrays( GL_TRIANGLES, 0, vertexCount );
+
+
+		model2world = make_translation({5.f, 0.f, 0.f}) * make_rotation_y(angle);
+		projCameraWorld = projection * world2camera * model2world;
+
+		glUniformMatrix4fv(
+			3,
+			1, GL_TRUE, projCameraWorld.v
+		);
+		
+		glDrawArrays( GL_TRIANGLES, 0, vertexCount );
+
+		model2world = make_translation({-5.f, 0.f, 0.f}) * make_rotation_y(angle);
+		projCameraWorld = projection * world2camera * model2world;
+
+		glUniformMatrix4fv(
+			3,
+			1, GL_TRUE, projCameraWorld.v
+		);
+		
+
+		glDrawArrays( GL_TRIANGLES, 0, vertexCount );
+
+
+		model2world = make_translation({5.f, -5.f, 0.f}) * make_rotation_y(angle);
+		projCameraWorld = projection * world2camera * model2world;
+
+		glUniformMatrix4fv(
+			3,
+			1, GL_TRUE, projCameraWorld.v
+		);
+		
+		glDrawArrays( GL_TRIANGLES, 0, vertexCount );
+
+		model2world = make_translation({-5.f, -5.f, 0.f}) * make_rotation_y(angle);
+		projCameraWorld = projection * world2camera * model2world;
+
+		glUniformMatrix4fv(
+			3,
+			1, GL_TRUE, projCameraWorld.v
+		);
+		
+
+		glDrawArrays( GL_TRIANGLES, 0, vertexCount );
 		// Reset state
 		glBindVertexArray( 0 );
 		glUseProgram( 0 );
-
 
 
 		// Draw scene
